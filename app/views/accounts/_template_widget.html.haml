@@ -1,0 +1,36 @@
+- color = '#1a93f8'
+
+%h5
+  %u
+    Preview
+
+.view_sample.container.text-center
+  = image_tag "remind-logo-small.png", class: "shrink-logo"
+  #template_content
+    %h1#account_company_name_output.list-page-title.1{"data-confirmation" => "Thanks for signing up!", :style => ""}
+      %span
+        {{company_name}}
+    %div#account_domain_output.list-desc.show-desc-mobile.list-page-paragraph
+      %span
+        {{domain}}
+
+  .clearfix
+    .sendlater-container.accept-email
+      .sendlater-email-input
+        %form.sll-email-form.row{:action => "", :style => ""}
+          %input.sendlater-email-input-field.sll-email{:name => "email", :placeholder => "Email", :required => "", :style => "", :type => "email"}/
+          %input.email-input-submit.col.c3{:style => "", :type => "submit", :value => "Remind"}/
+      .clearfix
+        .sendlater-time-option
+          %p
+            Scheduled! Reminder will arrive
+            %select.time-option-change.time-option-change-options{:style => ""}
+              %option.visible{:value => "1 minute"} now
+              %option{:value => "4 hours"} in 4 hours
+              %option{:value => "12 hours"} in 8 hours
+              %option{:value => "24 hours"} tomorrow
+              %option{:value => "72 hours"} in 3 days
+        .clearfix
+          %i
+            %small.small-sub{style: ""}
+              (Click the time above to change when the reminder is sent.)

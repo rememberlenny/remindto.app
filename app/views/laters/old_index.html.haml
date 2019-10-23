@@ -1,0 +1,18 @@
+%div.large-4.column.medium-3
+  =render 'layouts/side_nav.html.haml'
+%div.large-8.column.medium-9
+  %div.row
+    %h2
+      Old Feed
+    %hr
+  - @laters.each do |later|
+    %div.row.old-post
+      %h5
+        - if !later.title.empty?
+          = later.title
+        - else
+          = later.url
+        %small
+          Ran at
+          = later.destined_at.strftime("%D %I:%M")
+

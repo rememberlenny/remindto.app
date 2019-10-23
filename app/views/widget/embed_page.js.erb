@@ -1,0 +1,224 @@
+<%
+
+button_template  = escape_javascript(render 'widget/button/template.html.erb')
+button_grid = escape_javascript(render 'widget/button/mmin.css.erb')
+button_sheet = escape_javascript(render 'widget/button/style.css.erb')
+button_styles = button_grid + button_sheet
+baseUrl = escape_javascript(Rails.application.config.settings['env']['BASE_DOMAIN'])
+
+if Rails.env.development?
+  baseUrl = escape_javascript('http://localhost:3000')
+end
+
+id = escape_javascript(@id)
+
+%>
+// EMBED_PAGE.JS
+;(function(){
+
+  var SLApp = SLApp || {};
+
+  SLApp.getReferrerUrl = function(){
+    var el = document.querySelector("meta[name='remindtoread-referrer']");
+    return el.content;
+  }
+
+  SLApp.config = {
+    uid: '<%= id %>',
+    baseUrl: '<%= baseUrl %>',
+    buttons: null,
+    email: null,
+    url: SLApp.getReferrerUrl(),
+    url_later: null,
+    url_date_update: null,
+  }
+
+  SLApp.blastOff = function(){
+    this.pingHome();
+    this.setupHandlers();
+    this.disableForm();
+  }
+
+
+  SLApp.disableForm = function(){
+    var self = this;
+    var forms = document.querySelectorAll('form');
+    for (var i = forms.length - 1; i >= 0; i--) {
+      var element = forms[i];
+      if (element.addEventListener) {
+          element.addEventListener("submit", function(evt) {
+              evt.preventDefault();
+          }, true);
+      }
+      else {
+          element.attachEvent('onsubmit', function(evt){
+              evt.preventDefault();
+              self.handleClickEmail();
+          });
+      }
+    }
+  }
+
+  SLApp.pingHome = function(){
+    var c = this.config;
+    var url = c.baseUrl + '/widget/' + c.uid + '/init';
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var data = JSON.parse(request.responseText);
+      } else {
+      }
+    };
+    request.onerror = function() {};
+    request.send();
+  }
+
+  SLApp.handleClickEmail = function(evt){
+    var el = document.querySelector('.sendlater-container');
+    var header = document.querySelector('.list-page-title');
+    var paragraph = document.querySelector('.list-page-paragraph');
+    var email_field = document.querySelector('.sendlater-email-input-field');
+    var email = email_field.value;
+    var isValid = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email);
+    if(isValid){
+      SLApp.config.email = email;
+      SLApp.requestScheduledLater();
+      SLApp.removeClass(el, 'accept-email');
+      SLApp.addClass(el, 'select-time');
+      header.remove();
+      paragraph.remove();
+    }
+  }
+
+  SLApp.handleClickTime = function(evt){
+    var el = evt.target.parentElement.parentElement.parentElement;
+    var select_field = evt.target.parentElement.children[0];
+    var time_options = select_field.parentElement.parentElement;
+    var val = select_field.value;
+    SLApp.updateScheduledTime(val, time_options);
+  }
+
+  SLApp.defaultCallback = function(data, para){
+  }
+
+  SLApp.scheduleUpdateTime = function(data, para){
+    SLApp.removeClass(para['time_options'], 'updating');
+    SLApp.addClass(para['time_options'], 'updated');
+  }
+
+  SLApp.requestScheduledLater = function(val){
+    var email = this.config.email;
+    var currentUrl = this.config.url;
+    var query = '?email=' + encodeURIComponent(email) + '&url=' + encodeURIComponent(currentUrl) + '&delay=30%20seconds';
+    var url = '<%= baseUrl %>/<%= id %>/later/new' + query;
+    this.config.url_later = url;
+    var self  = this;
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var resp = request.responseText;
+        self.defaultCallback(resp)
+      } else {
+      }
+    };
+    request.onerror = function() {};
+    request.send();
+  }
+
+  SLApp.preventSendLaterSubmitForm = function(evt){
+    evt.preventDefault();
+    return false;
+  }
+
+  SLApp.updateScheduledTime = function(val, time_options){
+    var self = this;
+    var moreQuery = '&renew=true&delay=' + encodeURIComponent(val);
+    var url = this.config.url_later + moreQuery;
+    var para = { 'time_options': time_options };
+    this.config.url_date_update = url;
+    SLApp.removeClass(time_options, 'updated');
+    SLApp.addClass(time_options, 'updating');
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var resp = request.responseText;
+        self.scheduleUpdateTime(resp, para);
+      } else {
+      }
+    };
+    request.onerror = function() {};
+    request.send();
+  }
+
+  SLApp.setupHandlers = function(){
+    var sslc = document.querySelectorAll('.sendlater-container'),
+        self = this,
+        el;
+    for (var i = sslc.length - 1; i >= 0; i--) {
+      el = sslc[i];
+      var emailSubmitForm = document.querySelector('.sll-email-form');
+      var emailSubmitButton = document.querySelector('.email-input-submit');
+      var scheduleTimeField = document.querySelector('.time-option-change');
+      emailSubmitButton.addEventListener('submit', self.preventSendLaterSubmitForm, false);
+      emailSubmitForm.addEventListener('click', self.handleClickEmail, false);
+      scheduleTimeField.addEventListener('change', self.handleClickTime, false);
+    };
+  }
+
+  SLApp.addClass = function(el, klass){
+    el.className += ' '+klass;
+  }
+
+  SLApp.removeClass = function(el, klass){
+      var elClass = ' '+el.className+' ';
+      while(elClass.indexOf(' '+klass+' ') != -1)
+           elClass = elClass.replace(' '+klass+' ', '');
+      el.className = elClass;
+  }
+
+  SLApp.hasClass = function ( elem, klass ) {
+     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
+  }
+
+  SLApp.timeISO = function(){
+      (function() {
+
+        function pad(number) {
+          if (number < 10) {
+            return '0' + number;
+          }
+          return number;
+        }
+
+        Date.prototype.toISOString = function() {
+          return this.getUTCFullYear() +
+            '-' + pad(this.getUTCMonth() + 1) +
+            '-' + pad(this.getUTCDate()) +
+            'T' + pad(this.getUTCHours()) +
+            ':' + pad(this.getUTCMinutes()) +
+            ':' + pad(this.getUTCSeconds()) +
+            '.' + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) +
+            'Z';
+        };
+
+      }());
+  }
+
+  SLApp.guid = function() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+    SLApp.blastOff();
+  });
+})();

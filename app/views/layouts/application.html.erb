@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Remindtoapp</title>
+    <title>Remind To</title>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,9 +12,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="controller__#{controller_name} action__#{action_name}">
+    <%= render 'layouts/navigation'%>
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="errors__container">
+          <%= render 'layouts/messages' %>
     <%= yield %>
   </body>
 </html>

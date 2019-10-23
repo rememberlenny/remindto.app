@@ -1,0 +1,247 @@
+<% button_template  = escape_javascript(render 'widget/button/template.html.erb') %>
+<% button_grid = escape_javascript(render 'widget/button/mmin.css.erb') %>
+<% button_sheet = escape_javascript(render 'widget/button/style.css.erb') %>
+<% button_styles = button_grid + button_sheet %>
+<% baseUrl = escape_javascript(Rails.application.config.settings['env']['BASE_DOMAIN']) %>
+<% id = escape_javascript(@id) %>
+
+;(function(){
+  // console.log('<%= id %>');
+
+  var SLApp = SLApp || {};
+
+  SLApp.config = {
+    uid: '<%= id %>',
+    baseUrl: '<%= baseUrl %>',
+    buttons: null,
+    email: null,
+    url: location.href,
+    url_later: null,
+    url_date_update: null,
+  }
+
+  SLApp.blastOff = function(){
+    this.pingHome();
+    this.setupStyle();
+    this.findEls();
+    this.setupHandlers();
+    this.disableButtonEl();
+  }
+
+  SLApp.pingHome = function(){
+    var c = this.config;
+    var url = c.baseUrl + '/widget/' + c.uid + '/init';
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var data = JSON.parse(request.responseText);
+        // console.log(data);
+      } else {
+      }
+    };
+    request.onerror = function() {};
+    request.send();
+  }
+
+  SLApp.setupStyle = function(b){
+    var b   = document.getElementsByTagName('body'),
+        el  = document.createElement('style');
+        el.innerHTML = '<%= button_styles %>';
+        b[0].appendChild(el);
+  }
+
+  SLApp.disableButtonEl = function(){
+    var lbe = document.querySelectorAll('a.later-button-el');
+    for (var i = lbe.length - 1; i >= 0; i--) {
+      lbe[i].addEventListener('click', function(evt){ evt.preventDefault(); return false;}, false);
+    };
+  }
+
+  SLApp.findEls = function(){
+    var els = document.querySelectorAll('.later-button-el');
+    // console.log('Found ' + els.length + ' button slots');
+    this.config.buttons = els;
+    SLApp.getButton();
+  }
+
+  SLApp.handleClickSetup = function(evt){
+    var el = evt.target.parentElement.parentElement.parentElement;
+    SLApp.addClass(el, 'accept-email');
+  }
+
+  SLApp.handleClickEmail = function(evt){
+    var el = evt.target.parentElement.parentElement.parentElement;
+    var email_field = el.children[1].children[0].children[0];
+    var email = email_field.value;
+    var isValid = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email);
+    if(isValid){
+      SLApp.config.email = email;
+      SLApp.requestScheduledLater();
+      // console.log('email going');
+      SLApp.removeClass(el, 'accept-email');
+      SLApp.addClass(el, 'select-time');
+    }
+  }
+
+  SLApp.handleClickTime = function(evt){
+    var el = evt.target.parentElement.parentElement.parentElement;
+    var select_field = evt.target.parentElement.children[0];
+    var time_options = select_field.parentElement.parentElement;
+    var val = select_field.value;
+    SLApp.updateScheduledTime(val, time_options);
+  }
+
+  SLApp.defaultCallback = function(data, para){
+    // console.log('callback run');
+    // console.log(data);
+  }
+
+  SLApp.scheduleUpdateTime = function(data, para){
+    SLApp.removeClass(para['time_options'], 'updating');
+    SLApp.addClass(para['time_options'], 'updated');
+    // console.log('callback run');
+    // console.log(data);
+  }
+
+  SLApp.requestScheduledLater = function(val){
+    var email = this.config.email;
+    var currentUrl = this.config.url;
+    var query = '?email=' + encodeURIComponent(email) + '&url=' + encodeURIComponent(currentUrl) + '&delay=30%20seconds';
+    var url = '<%= baseUrl %>/<%= id %>/later/new' + query;
+    this.config.url_later = url;
+    var self  = this;
+    // console.log('url getting');
+    // console.log(url);
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var resp = request.responseText;
+        self.defaultCallback(resp)
+      } else {
+      }
+    };
+    request.onerror = function() {};
+    request.send();
+  }
+
+  SLApp.preventSendLaterSubmitForm = function(evt){
+    evt.preventDefault();
+    return false;
+  }
+
+  SLApp.updateScheduledTime = function(val, time_options){
+    var self = this;
+    var moreQuery = '&renew=true&delay=' + encodeURIComponent(val);
+    var url = this.config.url_later + moreQuery;
+    var para = { 'time_options': time_options };
+    this.config.url_date_update = url;
+    SLApp.removeClass(time_options, 'updated');
+    SLApp.addClass(time_options, 'updating');
+    // console.log('updateScheduledTime');
+    // console.log(url);
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var resp = request.responseText;
+        self.scheduleUpdateTime(resp, para);
+      } else {
+      }
+    };
+    request.onerror = function() {};
+    request.send();
+  }
+
+  SLApp.setupHandlers = function(){
+    var sslc = document.querySelectorAll('.sendlater-container'),
+        self = this,
+        el;
+    for (var i = sslc.length - 1; i >= 0; i--) {
+      el = sslc[i];
+      var remindMeLaterButton = el.children[0].children[0];
+      var emailField = el.children[1].children[0];
+      var emailSubmitForm = el.children[1].children[0].children[1];
+      var scheduleTimeField = el.children[2].children[0].children[0];
+      remindMeLaterButton.addEventListener('click', self.handleClickSetup, false);
+      emailField.addEventListener('submit', self.preventSendLaterSubmitForm, false);
+      emailSubmitForm.addEventListener('click', self.handleClickEmail, false);
+      scheduleTimeField.addEventListener('change', self.handleClickTime, false);
+    };
+  }
+
+  SLApp.addClass = function(el, klass){
+    el.className += ' '+klass;
+  }
+
+  SLApp.removeClass = function(el, klass){
+      var elClass = ' '+el.className+' ';
+      while(elClass.indexOf(' '+klass+' ') != -1)
+           elClass = elClass.replace(' '+klass+' ', '');
+      el.className = elClass;
+  }
+
+  SLApp.hasClass = function ( elem, klass ) {
+     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
+  }
+
+  SLApp.convertEls = function(buttonFrame){
+    var els = this.config.buttons;
+    for (var i = els.length - 1; i >= 0; i--) {
+      els[i].innerHTML = buttonFrame;
+      // console.log('Converting ' + els[i]);
+      els[i].classList.remove('hidden');
+    };
+  }
+
+  SLApp.generateButton = function(response){
+    // console.log(response);
+    this.convertEls(response);
+  }
+
+  SLApp.getButton = function(){
+    // console.log('Generating button');
+    var buttonCode = '<%= button_template %>';
+    this.generateButton(buttonCode);
+  }
+
+  SLApp.timeISO = function(){
+      (function() {
+
+        function pad(number) {
+          if (number < 10) {
+            return '0' + number;
+          }
+          return number;
+        }
+
+        Date.prototype.toISOString = function() {
+          return this.getUTCFullYear() +
+            '-' + pad(this.getUTCMonth() + 1) +
+            '-' + pad(this.getUTCDate()) +
+            'T' + pad(this.getUTCHours()) +
+            ':' + pad(this.getUTCMinutes()) +
+            ':' + pad(this.getUTCSeconds()) +
+            '.' + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) +
+            'Z';
+        };
+
+      }());
+  }
+
+  SLApp.guid = function() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+    SLApp.blastOff();
+  });
+})();

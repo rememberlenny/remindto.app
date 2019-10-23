@@ -1,0 +1,40 @@
+- logged_in = user_signed_in? && !@current_user.nil? && @current_user.try(:account_id).present?
+
+- if logged_in
+  %ul.side-nav
+    %li
+      = link_to new_account_path, class: 'button small-12 notice', style: 'background: none; border: #ccc 2px solid; padding-top: 0px;padding-bottom: 0px; margin-bottom: 0px;' do
+
+        %h4.text-center
+          = "+"
+          %span{ style: "font-size: 16px; font-weight: 500" }
+            Create Form
+    %label{:for => "",style: 'padding-bottom: 10px; ' }
+      %u
+        Currently Displayed Form
+    %li{style: "border: dotted 2px #ededed;"}
+      = link_to user_home_path do
+        %p{style: "margin-bottom: 0px; color: #4d4d4d"}
+          #{current_account.domain}
+        %p{style: "margin-bottom: 0px;"}
+          %small
+            = account_embed_url current_account.id
+
+    %li
+      %hr{ style: 'margin: 0px; padding: 0px;'}/
+
+    - current_accounts.each do |account|
+      %li
+        = link_to change_user_account_path(id: account.id), method: "POST", class: "", style: "margin-bottom: 0px;" do
+          %p{style: "margin-bottom: 0px; color: #4d4d4d"}
+            #{account.domain}
+          %p{style: "margin-bottom: 0px;"}
+            %small
+              = account_embed_url account.id
+
+
+  %ul.side-nav
+    %li
+      = link_to 'Dashboard', user_home_path
+    %li
+      = link_to 'Settings', edit_user_registration_path

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   
   get 'robots.:format' => 'robots#index'
 
+  get '/service/oembed' => 'service#oembed', as: 'oembed'
+  get '/f/:id' => 'reminder_form_page#show', as: 'reminder_form_page'
+
   root 'pages#home'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

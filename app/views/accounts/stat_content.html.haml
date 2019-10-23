@@ -1,0 +1,16 @@
+%table#stat-table.medium-12.column{data: {source: stats_data_account_path() }}
+  %thead
+    %tr
+      %th
+        ID
+      %th
+        Email
+  %tbody
+    - i = 1
+    - @subscribers.each do |subscriber|
+      - ++i
+      %tr
+        %td
+          = i
+        %td
+          = subscriber.email

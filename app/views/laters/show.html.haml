@@ -1,0 +1,23 @@
+%div.large-3.column.medium-3
+  =render 'layouts/side_nav.html.haml'
+
+%div.large-9.column.medium-9
+  = image_tag @later.image_url
+  - if !@later.title.empty?
+    %h1
+      = @later.title
+  - else
+    %h1
+      = shorten_url_text(@later.url, 40, '...')
+
+  %p
+    = @later.description
+  = distance_of_time_in_words(Time.now.utc, @later.destined_at)
+  from now
+  %br
+  = @later.destined_at.strftime("%D %I:%M")
+  %hr
+
+  = @later.to_json
+  %p
+    You are logged in.

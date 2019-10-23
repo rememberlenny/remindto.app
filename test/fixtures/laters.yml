@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  url: MyString
+  destined_at: 2019-10-23 10:20:42
+  title: MyString
+  description: MyText
+  image_url: MyString
+  content_updated: 2019-10-23 10:20:42
+  has_sent: false
+  account_id: 1
+
+two:
+  user_id: 
+  url: MyString
+  destined_at: 2019-10-23 10:20:42
+  title: MyString
+  description: MyText
+  image_url: MyString
+  content_updated: 2019-10-23 10:20:42
+  has_sent: false
+  account_id: 1

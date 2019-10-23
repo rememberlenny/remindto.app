@@ -1,0 +1,140 @@
+- id ||= 'destroy-modal'
+- i18n_prefix = i18n_prefix.present? ? "#{i18n_prefix}." : ''
+
+.reveal-modal.medium.fixed-modal{id: id, data: {reveal: ''}, tabindex: -1, role: 'dialog', 'aria-labelledby' => "#{id}-title", 'aria-hidden' => true}
+  %form#form-maker-1
+    .row
+      .large-12.columns
+        .text-center
+          %h2{id: "#{id}-title"}
+            Build a new reminder
+    .row
+      .large-12.columns
+        %label
+          Call to action
+          %input#cta-input{:type => "text", placeholder: "Call to action (e.g. Remind me to read this later"}/
+
+    .row
+      .large-12.columns
+        %label
+          Description
+          %input#description-input{:type => "text", placeholder: "Description (e.g. Get an email reminder in your inbox to come back.)"}/
+    .row
+      .large-12.columns.text-center
+        %p
+          = link_to "Upgrade", pricing_path
+          for more customization...
+    .row
+      .large-12.columns.text-center
+        %button.small-12{class: "info button small small-12 disabled", disabled: "disabled", data: {dismiss: ''}}
+          Upload Logo
+    .row
+      .small-8.columns
+        %ul.small-block-grid-5.fr
+          %li
+            %a.disabled.button.small-12{:href => "#", style: "background: #ff4500; border: none;"}
+          %li
+            %a.disabled.button.small-12{:href => "#", style: "background: #fab81e; border: none;"}
+          %li
+            %a.disabled.button.small-12{:href => "#", style: "background: #19cf86; border: none;"}
+          %li
+            %a.disabled.button.small-12{:href => "#", style: "background: #1b95e0; border: none;"}
+          %li
+            %a.disabled.button.small-12{:href => "#", style: "background: #f58ea8; border: none;"}
+      .small-4.columns
+        %ul.small-block-grid-1.small-12
+          %li
+            %input.small-12{:type => "text", disabled: "disabled", placeholder: "#1a93f8"}/
+
+    .row
+      .large-12.columns
+
+        %button.small-12{data: {dismiss: ''}}
+          Create
+  %form#form-maker-2.hidden
+    .row
+      .large-12.columns
+        %h2.text-center{id: "#{id}-title"}
+          Get your account
+    .row
+      .large-12.columns
+        %label
+          Email
+          %input#email-input.user-sign-in-link-email{:type => "text", placeholder: "name@domain.com"}/
+    .row
+      .large-6.columns
+        %button.send-sign-in-link.small-12{data: {dismiss: ''}}
+          Send signin link
+      .large-6.columns
+        %button.small-12{data: {dismiss: ''}}
+          Use password
+    .row.success-buttons-submission.hidden
+      .large-12.columns
+        %button.small-12{data: {dismiss: ''}}
+          Check your inbox
+  %a.close-reveal-modal ×
+.reveal-modal-bg
+
+- content_for :on_ready do
+  :plain
+    function prepareFormMaker() {
+      $('#form-maker-2').addClass('hidden');
+      $('#form-maker-1').removeClass('hidden');
+    }
+    function prepareAccount(data) {
+      window.currentForm = data;
+      $('#form-maker-1').addClass('hidden');
+      $('#form-maker-2').removeClass('hidden');
+    }
+    function submitTheEmail(email) {
+      $.ajax('/user/invite', {
+        method: 'POST',
+        data: {
+          new_user:{
+            email: email
+          }
+        }
+      }).done( function(data){
+        location.href = '/check_email'
+      });
+    }
+    $(document).ready(function(){
+      $('body').on('click', '.send-sign-in-link', function(evt){
+        evt.preventDefault();
+        var email = $('#email-input').val();
+        submitTheEmail(email);
+      });
+      $('body').on('click', '.send-sign-in-link', function(e){
+        var email = $('.user-sign-in-link-email').val();
+      });
+      $('body').on('click', '.display-modal', function(evt){
+        evt.preventDefault();
+        $('body').addClass('show-modal-page');
+        prepareFormMaker();
+      });
+
+      $('body').on('click', '.close-reveal-modal', function(evt){
+        evt.preventDefault();
+        $('body').removeClass('show-modal-page');
+      });
+
+      $('#form-maker-1').on('submit', function(evt){
+        evt.preventDefault();
+        var cta = $('#cta-input').val();
+        var description = $('#description-input').val();
+        $.ajax('/reminder_form', {
+          method: 'POST',
+          data: {
+            reminder:{
+              cta: cta,
+              description: description
+            }
+          }
+        }).done( function(data){
+          prepareAccount(data);
+        });
+
+      });
+
+
+    });

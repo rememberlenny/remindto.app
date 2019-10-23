@@ -1,0 +1,39 @@
+</div>
+</div>
+
+- if Rails.env.development?
+  - base_domain = 'http://localhost:3000/'
+- else
+  - base_domain = 'https://remindtoapp.com/'
+
+- url = base_domain + "f/"+@account.uid+"?as_embed=true&referrer=https%253A%252F%252Fremindtoapp.com%252Ff%252F"+@account.uid
+
+%div.large-4.column.medium-3{style: 'height: 200vh; border-right: 2px solid #efefef; max-width: 400px;'}
+  =render 'layouts/side_nav.html.haml'
+%div.large-8.column.medium-9
+  = render 'layouts/section_nav_bar'
+  / .row
+  /   .medium-12.column
+  /     %h3
+  /       Integrations
+
+  /     %hr/
+
+  /     = link_to new_webhook_path(@account.id), class: "button secondary medium-12" do
+  /       %h4
+  /         %b
+  /           Webhooks
+
+
+  .row
+    .medium-12.column
+      %hr/
+
+      %h3
+        Don't see what you want?
+      %h5
+        Do you have suggestions for other integrations? Please submit your ideas below.
+
+      %iframe{:frameborder => "0", :height => "2000", :marginheight => "0", :marginwidth => "0", :src => "https://docs.google.com/forms/d/e/1FAIpQLScmht2tVtkXhS3FpfSlcb1bQFJlBXkGuzRZvozEYEw7RrWh-g/viewform?embedded=true", :width => "100%"} Loading...
+
+= render 'layouts/copy_script'

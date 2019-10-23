@@ -1,0 +1,22 @@
+%div.large-4.column.medium-3
+  =render 'layouts/side_nav.html.haml'
+%div.large-8.column.medium-9
+  %div.row
+    %h2
+      Upcoming Feed
+      %hr
+  - @laters.each do |later|
+    %div.row
+      = image_tag later.image_url
+      %h4
+        - if !later.title.nil? &&!later.title.empty?
+          = later.title
+        - else
+          = later.url
+      %p
+        = later.description
+      = distance_of_time_in_words(Time.now.utc, later.destined_at)
+      from now
+      %br
+      = later.destined_at.strftime("%D %I:%M")
+      %hr

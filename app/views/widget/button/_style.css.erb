@@ -1,0 +1,181 @@
+.sendlater-container button{
+  color: black;
+}
+.sendlater-email-input{
+  color: black;
+  display: none;
+}
+.sendlater-email-input input{
+  line-height: 20px;
+  padding-left: 8px;
+}
+.sll-email-form input[type=email]{
+  width: 60%;
+}
+.sll-email-form input[type=submit]{
+  width: 30%;
+}
+.sll-email-form{
+  width: 100%;
+  margin-bottom: 0em;
+}
+.email-input-submit{
+  background: none;
+  border: 1px solid black;
+}
+.email-more-explain{
+  display: none;
+  position: absolute;
+  margin: 0px;
+  margin-top: .4em;
+}
+.time-option-change{
+  display: none;
+  border: none;
+  background: none;
+  border-bottom: 1px dotted black;
+  border-radius: 0px;
+  box-shadow: none;
+  font-size: 1em;
+  font-family: inherit;
+  margin-bottom: -1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  -webkit-appearance: none;
+  -webkit-writing-mode: none;
+}
+.sendlater-time-option{
+  display: none;
+  position: relative;
+}
+
+.sendlater-time-option p{
+    line-height: 1em;
+    margin: 0px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.time-option-selected{
+  position: relative;
+}
+.time-option-selected:hover .time-option-change-options,
+.time-option-selected.active .time-option-change-options,
+{
+  display: block;
+}
+ul.time-option-change{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+
+  top: 1em;
+  left: 100%;
+  padding-left: .4em;
+}
+.select-time .time-option-change {
+  display: inline-block;
+  padding: 0px;
+}
+
+.select-time .sendlater-time-option p:after{
+  content: '';
+  display: none;
+  /*display: inline-block;*/
+  background: transparent;
+  width: 1em;
+  height: 1em;
+  top: 5px;
+  position: absolute;
+  right: -1.5em;
+}
+
+.select-time .sendlater-time-option p:after{
+  content: '';
+  display: inline-block;
+  background: transparent;
+  width: 1em;
+  height: 1em;
+  top: 5px;
+  position: absolute;
+  right: -1.5em;
+}
+
+.select-time .sendlater-time-option p:after{
+  background: lightBlue;
+}
+
+.select-time .sendlater-time-option.updating p:after{
+  background: #eee;
+}
+
+.select-time .sendlater-time-option.updated p:after{
+  background: green;
+}
+
+.select-time .sendlater-time-option{
+  display: inline-block;
+}
+.sendlater-email-input:hover .email-more-explain{
+  display: inline-block;
+}
+.sendlater-container{
+  display: inline-block;
+  min-height: 2em;
+}
+.sendlater-container.accept-email .sendlater-email-input{
+  display: inline-block;
+}
+.sendlater-container.accept-email .sendlater-button,
+.sendlater-container.select-time .sendlater-button{
+  display: none;
+  color: black;
+}
+.sll-email-form {
+  position: relative;
+}
+.sendlater-button button img{
+  margin-bottom: -5px;
+}
+
+.sendlater-button button{
+  background: none;
+  border: 1px solid black;
+  line-height: 20px;
+}
+p.email-more-explain{
+  width: 270px;
+  background: #eee;
+  padding: 10px;
+  text-align: center;
+  z-index: 1;
+}
+p.email-more-explain:before {
+  content: '';
+  border: 7px solid #eee;
+  position: absolute;
+  top: -5px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+
+label#-error:before {
+  content: '';
+  border: 6px solid #f2a0af;
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  left: -5px;
+  top: 6px;
+}
+
+.sll-email-form label.error{
+  position: absolute;
+  left: 110%;
+  top: -2px;
+  width: 120%;
+  background: #F2A0AF;
+  padding: 3px 10px;
+}

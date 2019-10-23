@@ -1,0 +1,10 @@
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) and msg.present? %>
+    <% name = 'warning' if name.to_s == 'alert' %>
+    <% type = (['info', 'success', 'warning'].include?(name.to_s) ? name : 'info') %>
+    <div class="alert-box #{type}">
+      <%= msg %>
+      <a class="close" href='#' aria-hidden="true">&times;</a>
+    </div>
+  <% end %>
+<% end %>
