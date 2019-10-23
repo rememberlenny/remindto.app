@@ -1,0 +1,87 @@
+<div class="text-center pricing-block row">
+  <div class="pricing-head">
+    <h1>Remind your users on their terms.</h1>
+    <h2 class="subtitle">Cancel any time.</h2>
+  </div>
+  <table class="pricing-table">
+    <thead>
+      <tr>
+        <th style="width: 100%; visibility: hidden;"></th>
+        <th style="width: 25%; min-width: 300px;border-left: solid 1px #dddddd">
+          <h4 class="text-center product-title subtitle">Free</h4>
+          <h5 class="text-center"><span class="text-center product-amount">$0</span><span class="pricing-detail">/mo</span></h3>
+        </th>
+        <th style="width: 25%; min-width: 300px;">
+          <h4 class="text-center product-title subtitle">Premium</h4>
+          <h5 class="text-center"><span class="text-center product-amount">$20</span><span class="pricing-detail">/mo</span></h3>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border-top: solid 1px #dddddd;"><h5>Export signups anytime</h5></td>
+        <td>X</td>
+        <td>X</td>
+      </tr>
+      <tr>
+        <td><h5>All Integrations</h5></td>
+        <td>X</td>
+        <td>X</td>
+      </tr>
+      <tr>
+        <td><h5>Customize form color, logo, and bg</h5></td>
+        <td></td>
+        <td>X</td>
+      </tr>
+      <tr>
+        <td><h5>Custom Branding on Email Templates</h5></td>
+        <td></td>
+        <td>X</td>
+      </tr>
+      <tr class="no-border">
+        <td></td>
+        <td></td>
+        <td>
+          <% if user_signed_in? %>
+            <form action="<%= checkout_subscription_path %>" method="POST">
+              <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-image="<%= image_url 'remind-logo-small.png' %>"
+                data-name="Remind To"
+                data-description="Recuring monthly subscription"
+                data-amount="2000"
+                data-label="Sign Me Up!">
+              </script>
+            </form>
+          <% else %>
+            <%= link_to "Signup", new_user_registration_path, class: "medium-12 button radius" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="clearfix"></div>
+
+</div>
+
+<div class="row col-centered question-block">
+  <h1 class="text-center question-head">Questions</h1>
+  <div class="medium-6 column">
+    <h4>Q: What is a reminder?</h4>
+    <p>A reminder is an email sent to a user who requests a Remind To email. Each email sent is a "reminder".</p>
+  </div>
+  <div class="medium-6 column">
+    <h4>Q: What are white-label emails?</h4>
+    <p>Free accounts reminders will contain the Remind To logo. All paid accounts can remove and customize the displayed logo.</p>
+  </div>
+  <div class="medium-6 column">
+    <h4>Q: Can I export my data?</h4>
+    <p>Yes! We provide a way to export your site's reminder activity.</p>
+  </div>
+  <div class="medium-6 column">
+    <h4>Q: For more questions, who can I talk to?</h4>
+    <p>For product or service questions, contact Lenny at lenny@remindtoapp.com. For security questions, please contact security@remindtoapp.com.</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
