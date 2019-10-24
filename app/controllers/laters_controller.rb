@@ -2,8 +2,8 @@ class LatersController < ApplicationController
   load_and_authorize_resource :user, :except => :new
   skip_authorization_check :only => :new
   skip_before_action :authenticate_user!, :only => :new
-  skip_before_filter :verify_authenticity_token, :only => :new
-  before_filter :add_allow_credentials_headers, :only => :new
+  skip_before_action :verify_authenticity_token, :only => :new
+  before_action :add_allow_credentials_headers, :only => :new
 
   def index
     if @current_user.account_id.nil?

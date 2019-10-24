@@ -118,12 +118,28 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    haml (5.1.2)
+      temple (>= 0.8.0)
+      tilt
+    haml-rails (2.0.1)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6, < 6.0)
+      html2haml (>= 1.0.1)
+      railties (>= 5.1)
+    hashie (3.6.0)
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     json (2.2.0)
+    jwt (2.2.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -144,11 +160,29 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.12.2)
     msgpack (1.3.1)
+    multi_json (1.14.1)
+    multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    nokogumbo (2.0.1)
+      nokogiri (~> 1.8, >= 1.8.4)
+    oauth2 (1.4.2)
+      faraday (>= 0.8, < 2.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
     oj (3.9.2)
+    omniauth (1.9.0)
+      hashie (>= 3.4.6, < 3.7.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-facebook (5.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-oauth2 (1.6.0)
+      oauth2 (~> 1.1)
+      omniauth (~> 1.9)
     orm_adapter (0.5.0)
     parallel (1.18.0)
     parser (2.6.5.0)
@@ -217,9 +251,16 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    ruby-oembed (0.12.0)
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
+    ruby_parser (3.14.0)
+      sexp_processor (~> 4.9)
     rubyzip (2.0.0)
+    sanitize (5.1.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.8.0)
+      nokogumbo (~> 2.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -234,12 +275,16 @@ GEM
     selenium-webdriver (3.142.6)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    settingslogic (2.0.9)
     sexp_processor (4.13.0)
     sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
+    simple_form (4.0.0)
+      actionpack (> 4)
+      activemodel (> 4)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -251,6 +296,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.2)
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -286,6 +332,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   annotate
   better_errors
   binding_of_caller
@@ -299,18 +346,25 @@ DEPENDENCIES
   faraday
   foreman
   friendly_id (~> 5.2.4)
+  haml-rails (~> 2.0)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   maily
   oj
+  omniauth
+  omniauth-facebook
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 6.0.0)
   rails_best_practices
   rubocop (~> 0.75.1)
+  ruby-oembed
+  sanitize
   sass-rails (~> 5)
   selenium-webdriver
+  settingslogic
   sidekiq
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

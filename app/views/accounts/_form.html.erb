@@ -1,34 +1,34 @@
-- if type_of_form == "create"
-  - resource_place = create_account_path(@account)
-- elsif type_of_form == "edit"
-  - resource_place = update_account_path(@account)
-
-= simple_form_for @account, url: resource_place do |f|
+<% if type_of_form == "create" %>
+  <% resource_place = create_account_path(@account) %>
+<% elsif type_of_form == "edit" %>
+  <% resource_place = update_account_path(@account) %>
+<% end %>
+<%= simple_form_for @account, url: resource_place do |f| %>
   .row
     .large-12.columns
       %label
         %h5
           Call to action
-        = f.input :company_name, label: false, autofocus: true, required: true, placeholder: "Call to action (e.g. Remind me to read this later", input_html: { "v-model" => "company_name" }
+        <%= f.input :company_name, label: false, autofocus: true, required: true, placeholder: "Call to action (e.g. Remind me to read this later", input_html: { "v-model" => "company_name" } %>
 
   .row
     .large-12.columns
       %label
         %h5
           Description
-        = f.input :domain, label: false, placeholder: "Description (e.g. Get an email reminder in your inbox to come back.)", input_html: { "v-model" => "domain" }
-  - if current_user.subscription_type == 'premium'
+        <%= f.input :domain, label: false, placeholder: "Description (e.g. Get an email reminder in your inbox to come back.)", input_html: { "v-model" => "domain" } %>
+  <% if current_user.subscription_type == 'premium' %>
     .row
       .large-12.columns
         %label
           %h5
             Remove RemindToRead branding
-          = f.select :remove_branding_flag, [['Keep branding', false], ['Remove branding', true]], label: false
+          <%= f.select :remove_branding_flag, [['Keep branding', false], ['Remove branding', true]], label: false %>
     .row
       .large-12.columns
         %h5
           Company logo
-        = f.attachment_field :company_image, placeholder: "Description (e.g. Get an email reminder in your inbox to come back.)", class: "info button small small-12 disabled", value: "Upload Logo"
+        <%= f.attachment_field :company_image, placeholder: "Description (e.g. Get an email reminder in your inbox to come back.)", class: "info button small small-12 disabled", value: "Upload Logo" %>
     .row
       .small-9.columns
         %ul.small-block-grid-5.fr
@@ -45,9 +45,9 @@
       .small-3.columns
         %ul.small-block-grid-1.small-12
           %li
-            = f.input :color, label: false, placeholder: "#1a93f8", class: "color-click-target"
+            <%= f.input :color, label: false, placeholder: "#1a93f8", class: "color-click-target" %>
 
-  - else
+  <% else %>
     .row
       .large-12.columns.text-center
         %p
@@ -74,7 +74,8 @@
         %ul.small-block-grid-1.small-12
           %li
             %input.small-12{:type => "text", disabled: "disabled", placeholder: "#1a93f8"}/
-
+  <% end %>
   .row
     .medium-12.column
-      = f.button :submit, class: 'medium-12', value: 'Update Reminder Form'
+      <%= f.button :submit, class: 'medium-12', value: 'Update Reminder Form' %>
+<% end %>

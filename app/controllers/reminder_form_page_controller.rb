@@ -1,8 +1,8 @@
 class ReminderFormPageController < ApplicationController
   skip_authorization_check
   skip_before_action :authenticate_user!
-  skip_after_action :intercom_rails_auto_include
-  before_filter :add_allow_credentials_headers
+  # skip_after_action :intercom_rails_auto_include
+  before_action :add_allow_credentials_headers
   def show
     response.headers["X-FRAME-OPTIONS"] = "ALLOWALL"
     @id = params[:id]

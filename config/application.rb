@@ -17,3 +17,5 @@ module Remindtoapp
     # the framework and any gems in your application.
   end
 end
+
+require File.expand_path('../settings', __FILE__)

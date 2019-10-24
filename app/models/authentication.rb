@@ -1,7 +1,7 @@
 class Authentication < ActiveRecord::Base
-  include Concerns::OmniauthConcern
-  include Concerns::UserImagesConcern
-  include Concerns::AuthenticationProvidersConcern
+  # include Concerns::OmniauthConcern
+  # include Concerns::UserImagesConcern
+  # include Concerns::AuthenticationProvidersConcern
 
   belongs_to :user
 

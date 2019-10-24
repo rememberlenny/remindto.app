@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  include Mengpaneel::Controller
-
   if ENV['BASIC_AUTH']
     user, pass = ENV['BASIC_AUTH'].split(':')
     http_basic_authenticate_with name: user, password: pass
@@ -12,9 +10,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   # Devise, require authenticate by default
-  before_filter :authenticate_user!
-
-  before_action :setup_mixpanel
+  before_action :authenticate_user!
 
   # CanCan, check authorization unless authorizing with devise
   check_authorization unless: :skip_check_authorization?
@@ -73,22 +69,4 @@ class ApplicationController < ActionController::Base
 
 
   private
-    def setup_mixpanel
-      return unless user_signed_in?
-
-      # For technical reasons, you need to do setup from a `mengpaneel.setup` block.
-      # I'll go into those reasons later.
-      mengpaneel.setup do
-        mixpanel.identify(current_user.id)
-
-        mixpanel.people.set(
-          "ID"              => current_user.id,
-          "$email"          => current_user.email,
-          "$first_name"     => current_user.first_name,
-          "$last_name"      => current_user.last_name,
-          "$created"        => current_user.created_at,
-          "$last_login"     => current_user.current_sign_in_at
-        )
-      end
-    end
 end

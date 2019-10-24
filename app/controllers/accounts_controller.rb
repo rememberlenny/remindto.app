@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   load_and_authorize_resource :user
-  skip_before_filter :verify_authenticity_token
-  before_filter :add_allow_credentials_headers
+  skip_before_action :verify_authenticity_token
+  before_action :add_allow_credentials_headers
 
   def new
     @account = Account.new(owner_id: @current_user.id)
@@ -91,8 +91,8 @@ class AccountsController < ApplicationController
       @current_user.stripe_customer_id = customer.id
       @current_user.subscription_type = "premium"
       @current_user.save
-      mixpanel.track("Complete Payment",  "Payment ID"  => @current_user.stripe_token,
-                                          "Amount"      => "20")
+      # mixpanel.track("Complete Payment",  "Payment ID"  => @current_user.stripe_token,
+      #                                     "Amount"      => "20")
       redirect_to user_home_path, notice: "Thank you for signing up!"
     rescue => ex
       redirect_to pricing_path, alert: "There was an issue with your card."
@@ -106,7 +106,7 @@ class AccountsController < ApplicationController
     end
     @account.owner_id = @current_user.id
     @account.save(validate: false)
-    mixpanel.track("Create Remind Form", "Title" => @account.uid)
+    # mixpanel.track("Create Remind Form", "Title" => @account.uid)
 
     @current_user.account_id = @account.id
     @current_user.save

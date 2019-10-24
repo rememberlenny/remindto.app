@@ -1,8 +1,8 @@
 class WidgetController < ApplicationController
   skip_authorization_check
   skip_before_action :authenticate_user!
-  skip_before_filter :verify_authenticity_token
-  before_filter :add_allow_credentials_headers
+  skip_before_action :verify_authenticity_token
+  before_action :add_allow_credentials_headers
 
   def embed
     response.headers["X-FRAME-OPTIONS"] = "ALLOWALL"

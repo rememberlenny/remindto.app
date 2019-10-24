@@ -1,0 +1,52 @@
+<% color = '#1a93f8' %>
+<% if !@account.color.empty? %>
+  <% color = @account.color %>
+<% end %>
+<style>
+  <%= render 'widget/button/style.css' %>
+</style>
+
+<div class="container text-center">
+  <%= image_tag "remind-logo-small.png", class: "shrink-logo" %>
+  <h1 class="list-page-title 1" data-confirmation="Thanks for signing up!" style="font-weight: bold;">
+    <%= @account.company_name %>
+  </h1>
+  <div class="list-desc show-desc-mobile list-page-paragraph">
+    <%= @account.domain %>
+  </div>
+  <div class="clearfix">
+    <a class="later-button-el">
+      <div class="sendlater-container accept-email">
+        <div class="sendlater-email-input">
+          <form class="sll-email-form row" action="" style="margin: 1% 0;overflow: auto;">
+            <input class="sendlater-email-input-field sll-email" name="email" placeholder="Email" required style="box-sizing: border-box;  height: 37px; background: 0;border-radius: 0;font: 16px sans-serif;margin: 0;outline: 0;font-size: 14px;display: block;margin-bottom: 10px;border: 1px solid #ccc;padding: 8px;float: left;width: 158px; max-width: 100%; border-left: none; box-shadow: none; border-right: none; margin-right: 15px; border-bottom-style: dashed; border-bottom-width: 2px;border-top: none; " type="email">
+            <input class="email-input-submit col c3" style="background: #{color};  box-sizing: border-box; height: 37px; color: #fff; border-radius: 0;font: 16px sans-serif;margin: 0;outline: 0;font-size: 14px;display: block;margin-bottom: 10px;border: 1px solid #ccc;padding: 8px;float: left; width: 70px; font-weight:800; max-width: 100%;     " type="submit" value="Remind">
+          </form>
+        </div>
+        <div class="sendlater-time-option">
+          <p>
+            Scheduled! Reminder will arrive
+            <select class="time-option-change time-option-change-options" style="width: auto;">
+              <option class="visible" value="1 minute">now</option>
+              <option value="4 hours">in 4 hours</option>
+              <option value="12 hours">in 8 hours</option>
+              <option value="24 hours">tomorrow</option>
+              <option value="72 hours">in 3 days</option>
+            </select>
+          </p>
+          <i>
+            <small style="color: #333; font-size: 1.2em;">
+              (Click the time above to change when the reminder is sent.)
+            </small>
+          </i>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<% if Rails.env.development? %>
+  <script type="text/javascript" src="http://localhost:3000/widget-page/#{@id}"></script>
+<% else %>
+  %script{:type=>"text/javascript", :src=>"https://www.remindtoapp.com/widget-page/" + @id}
+<% end %>
+

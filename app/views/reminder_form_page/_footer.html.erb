@@ -1,0 +1,16 @@
+<% color = '#1a93f8' %>
+<% if !@account.color.empty? %>
+  <% color = @account.color %>
+<% end %>
+<% if @user.subscription_type == 'premium' && @account.remove_branding_flag %>
+
+<% else %>
+  <div class="text-center powered-by" style="color: #{color}">
+    <a href="https://remindtoapp.com?rel=#{@id}" target="_blank" style="color: #{color}">
+      <span>
+        Delivered by
+        <strong> remindtoread</strong>
+      </span>
+    </a>
+  </div>
+<% end %>

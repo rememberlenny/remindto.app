@@ -1,23 +1,62 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Remind To</title>
-    <meta charset="utf-8">
-    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
-    
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body class="controller__#{controller_name} action__#{action_name}">
-    <%= render 'layouts/navigation'%>
-    <div class="row">
-      <div class="large-12 columns">
-        <div class="errors__container">
-          <%= render 'layouts/messages' %>
-    <%= yield %>
+<% if controller_name == 'reminder_form_page' %>
+  <html class="no-js" lang='en'>
+    <head>
+      <meta charset="utf-8">
+      <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+      <% if @referrer %>
+        <meta name="remindtoread-referrer" content="#{@referrer}">
+      <% end %>
+      <title>
+        <%= content_for?(:title) ? yield(:title) : I18n.t('brand.name') %>
+      </title>
+      <meta content="#{(content_for?(:description) ? yield(:description) : I18n.t('brand.name')), name: 'description'}}">
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
+      <%= yield :head %>
+      <style>
+        <%= render 'reminder_form_page/style.css.erb' %>
+      </style>
+    </head>
+  <body class="wrapper controller__#{controller_name} action__#{action_name} as_embed">
+    <div class="list-page kabuki site-wrapper no-logo controller__reminder_form_page action__show">
+      <div class="site-wrapper-inner">
+        <%= yield %>
+        <%= render 'reminder_form_page/footer' %>
+      </div>
+    </div>
   </body>
-</html>
+<% else %>
+  <html>
+    <head>
+      <title>Remind To</title>
+      <meta charset="utf-8">
+      <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+      
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+    <body class="controller__#{controller_name} action__#{action_name}">
+      <%= render 'layouts/navigation'%>
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="errors__container">
+            <%= render 'layouts/messages' %>
+          <%= yield %>
+        <% if controller_name != 'pages' %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= render 'layouts/footer' %>
+            </div>
+          </div>
+        <% else %>
+          <%= render 'pages/home/signup' %>
+        <% end %>
+    </body>
+  </html>
+<% end %>

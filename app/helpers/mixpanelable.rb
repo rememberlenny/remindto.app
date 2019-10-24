@@ -2,7 +2,7 @@ module Mixpanelable
   extend ActiveSupport::Concern
 
   included do
-    before_filter :set_mp_cookie_information
+    before_action :set_mp_cookie_information
   end
 
   def set_mp_cookie_information

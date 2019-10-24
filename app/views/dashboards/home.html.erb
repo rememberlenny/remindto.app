@@ -1,0 +1,46 @@
+</div>
+</div>
+
+<% if Rails.env.development? %>
+  <% base_domain = 'http://localhost:3000/' %>
+<% else %>
+  <% base_domain = 'https://remindtoapp.com/' %>
+<% end %>
+
+<% url = base_domain + "f/"+@account.uid+"?as_embed=true&referrer=https%253A%252F%252Fremindtoapp.com%252Ff%252F"+@account.uid %>
+
+<div class="large-4 column medium-3" style='height: 100vh; border-right: 2px solid #efefef; max-width: 400px;'>
+  <%= render 'layouts/side_nav' %>
+</div>
+<div class="large-8 column medium-9">
+  <%= render 'layouts/section_nav_bar' %>
+  <div class="row text-center">
+    <iframe id="player" allowfullscreen="true" frameborder="0" scrolling="no" width="650" height="400" src="#{url}">
+  <div class="row">
+    <div class="medium-12 large-12 small-12 column">
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="medium-5 column medium-centered">
+      <div class="row">
+        <div class="small-10 column">
+          <label>
+            Your link
+          </label>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-10 column">
+          <input id="copyTarget" type="text" readonly="true" value="#{account_embed_url(current_user.account_id)}">
+        </div>
+        <div class="small-2 column">
+          <button id="copyButton" class="small button" style="padding-top: 11px; padding-bottom: 10px;">
+            Copy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/copy_script' %>

@@ -1,0 +1,56 @@
+<div class="large-3 column medium-3">
+  <%= render 'layouts/side_nav' %>
+</div>
+<div class="large-9 column medium-9 install-page">
+  <div class="row">
+    <h2>
+      Setup
+    </h2>
+      <hr>
+  </div>
+  <div class="row #{is_domain_blank_class}">
+    <h4>
+      Step 1
+    </h4>
+    <p>
+      Set up your account domain on the #{link_to 'Settings', edit_user_registration_path} page.
+    </p>
+    <hr/>
+  </div>
+  <div class="row #{is_user_script_up_class}">
+    <h4>
+      Step 2
+    <p>
+      Put the following script tag in the footer of your website.
+    </p>
+    <pre>
+      <code>
+        &lt;script type="text/javascript" src="#{Rails.application.config.settings['env']['BASE_DOMAIN']}/widget/#{@current_account.uid}"&gt;&lt;/script&gt;
+      </code>
+    </pre>
+    <hr/>
+  </div>
+  <div class="row">
+    <h4>
+      Step 3
+    </h4>
+    <p>
+      Put the following html in the place where you want to see the Remind To Send button.
+    </p>
+    <pre>
+      <code>
+        &lt;a href="#" class="later-button-el"&gt;&lt;a &gt;
+      </code>
+    </pre>
+    <hr/>
+  </div>
+  <div class="row">
+    <h4>
+      Step 4
+    </h4>
+    <p>
+      Go to the #{link_to 'dashboard', user_home_path}.
+    </p>
+    <hr/>
+  </div>
+</div>

@@ -6,7 +6,7 @@ class Account < ActiveRecord::Base
 
   # validates :color, :css_hx_color => true
 
-  attachment :company_image
+  # attachment :company_image
 
   def send_welcome_emails
     # UserMailer.delay.welcome_email(self.id)

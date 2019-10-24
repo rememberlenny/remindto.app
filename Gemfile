@@ -46,10 +46,18 @@ gem 'friendly_id', '~> 5.2.4' # Note: You MUST use 5.0.0 or greater for Rails 4.
 gem 'foreman'
 gem 'faraday'
 gem 'oj'
+gem 'simple_form'
 gem 'devise'
+gem 'sanitize'
+gem 'ruby-oembed'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'maily'
 gem 'cancancan'
+gem "haml-rails", "~> 2.0"
 gem 'draper'
+gem 'addressable'
+gem 'settingslogic'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

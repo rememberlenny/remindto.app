@@ -1,5 +1,3 @@
-require 'sanitize'
-
 class PagesController < ApplicationController
   skip_authorization_check
   skip_before_action :authenticate_user!
@@ -28,7 +26,8 @@ class PagesController < ApplicationController
   end
 
   def optout_confirm
-    @email = Sanitize.fragment(params[:email])
+    # TODO(lkb) Sanitize the email
+    @email = params[:email]
     @existed = false
     uu = User.where(email: @email)
     if uu.count > 0

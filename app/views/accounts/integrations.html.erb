@@ -1,0 +1,30 @@
+</div>
+</div>
+
+<% if Rails.env.development? %>
+  <% base_domain = 'http://localhost:3000/' %>
+<% else %>
+  <% base_domain = 'https://remindtoapp.com/' %>
+<% end %>
+
+<% url = base_domain + "f/"+@account.uid+"?as_embed=true&referrer=https%253A%252F%252Fremindtoapp.com%252Ff%252F"+@account.uid %>
+
+<div class="large-4 column medium-3" style='height: 100vh; border-right: 2px solid #efefef; max-width: 400px;'>
+  <%= render 'layouts/side_nav' %>
+</div>
+<div class="large-8 column medium-9">
+  <%= render 'layouts/section_nav_bar' %>
+  <div class="row">
+    <div class="medium-12 large-12 small-12 column">
+      <hr>
+
+      <h3>
+        Don't see what you want?
+      </h3>
+      <h5>
+        Do you have suggestions for other integrations? Please submit your ideas below.
+      </h5>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/copy_script' %>

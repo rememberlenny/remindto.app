@@ -1,19 +1,21 @@
 #form-container{ "data-name" => "example-wrappers"}
   %div.medium-6.column.medium-centered.text-center
-    %h1
+    <h1>
       Lets get you setup!
-    %p
+    </h1>
+    <p>
       Build your reminder form below. You can change these later.
+    </p>
   %div.medium-6.column.panel.callout{style: 'border-color: #eee; background: #fefefe;'}
-    = render :partial => 'accounts/form', locals: { type_of_form: "create" }
-  %style
-    = render 'widget/button/style.css'
-
+    <%= render :partial => 'accounts/form', locals: { type_of_form: "create" } %>
+  <style>
+    <%= render 'widget/button/style.css' %>
+  </style>
 
   %div.medium-6.column{style: 'border-color: #eee; background: #fefefe;'}
-    %br/
+    <br>
 
-    = render 'template_widget'
+    <%= render 'template_widget' %>
 
 
 
