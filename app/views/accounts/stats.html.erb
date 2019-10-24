@@ -1,32 +1,44 @@
+
 </div>
 </div>
-
-- if Rails.env.development?
-  - base_domain = 'http://localhost:3000/'
-- else
-  - base_domain = 'https://remindtoapp.com/'
-
-- url = base_domain + "f/"+@account.uid+"?as_embed=true&referrer=https%253A%252F%252Fremindtoapp.com%252Ff%252F"+@account.uid
-
-%div.large-4.column.medium-3{style: 'height: 100vh; border-right: 2px solid #efefef; max-width: 400px;'}
-  =render 'layouts/side_nav.html.haml'
-%div.large-8.column.medium-9
-  = render 'layouts/section_nav_bar'
-  .row
-    .medium-12.column
-      %table.datatable.medium-12
-        %thead
-          %tr
-            %th
+<% if Rails.env.development? %>
+  <% base_domain = 'http://localhost:3000/' %>
+<% else %>
+  <% base_domain = 'https://remindtoapp.com/' %>
+<% end %>
+<% url = base_domain + "f/"+@account.uid+"?as_embed=true&referrer=https%253A%252F%252Fremindtoapp.com%252Ff%252F"+@account.uid %>
+<div class='large-4 column medium-3' <%= tag_options({style: 'height: 100vh; border-right: 2px solid #efefef; max-width: 400px;'}, false) %>>
+  <%= render 'layouts/side_nav' %>
+</div>
+<div class='large-8 column medium-9'>
+  <%= render 'layouts/section_nav_bar' %>
+  <div class='row'>
+    <div class='medium-12 column'>
+      <table class='datatable medium-12'>
+        <thead>
+          <tr>
+            <th>
               ID
-            %th
+            </th>
+            <th>
               Email
-        %tbody
-          - @subscribers.each do |subscriber|
-            %tr
-              %td
-                = subscriber.id
-              %td
-                = subscriber.email
-
-= render 'layouts/copy_script'
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @subscribers.each do |subscriber| %>
+            <tr>
+              <td>
+                <%= subscriber.id %>
+              </td>
+              <td>
+                <%= subscriber.email %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/copy_script' %>

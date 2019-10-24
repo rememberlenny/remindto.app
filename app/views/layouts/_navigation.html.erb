@@ -1,61 +1,39 @@
 <% logged_in = user_signed_in? && !@current_user.nil? && @current_user.try(:account_id).present? %>
 <% top_styles = logged_in ? "margin-bottom: 0px" : "" %>
-<nav class="top-bar" style="#{top_styles}" data-topbar='' data-options-custom_back_text="false">
-  <% if user_signed_in? %>
-    <ul class="title-area">
-      <li class="name">
-        <h1>
-          <%= link_to root_path, class: 'navbar-brand' do %>
-            <%= image_tag 'sendlatericon-icon.png', style: 'max-height: 25px;' %>
+<nav class="flex items-center justify-between flex-wrap p-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <%= link_to root_path, {class: 'navbar-brand'} do %>
+      <%= image_tag 'sendlatericon-icon.png', style: 'max-height: 25px;' %>
+    <% end %>
+  </div>
+  <div class="block lg:hidden">
+    <button class="flex items-center px-3 py-2 border rounded text-black border-black hover:text-grey-400 hover:border-white">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    </button>
+  </div>
+  <div class="justify-end w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div>
+      <div class="text-sm text-right lg:flex-grow pr-4">
+        <% if user_signed_in? %>
+        <% else %>
+          <%= link_to I18n.t('auth.login.link'), new_user_session_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
+        <% end %>
+      </div>
+      <div class="flex">
+        <div class="text-right w-full block flex-grow lg:flex lg:items-center lg:w-auto pr-4">
+          <% if user_signed_in? %>
+            <%= link_to I18n.t('nav.preauth.help'), help_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
+            <%= link_to I18n.t('auth.logout.link'), destroy_user_session_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400", rel: :nofollow, method: :delete } %>
+            <%= link_to I18n.t('account.edit.link'), edit_user_registration_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
+          <% else %>
+            <%= link_to I18n.t('nav.preauth.pricing'), pricing_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
           <% end %>
-        </h1>
-      </li>
-    </ul>
-  <% else %>
-    <ul class="title-area">
-      <li class="name">
-        <h1>
-          <%= link_to root_path, class: 'navbar-brand' do %>
-            <%= image_tag 'sendlatericon-icon.png', style: 'max-height: 25px;' %>
-          <% end %>
-        </h1>
-      </li>
-    </ul>
-  <% end %>
-  <section class="top-bar-section">
-    <ul class="right">
-      <% if user_signed_in? %>
-
-        <li>
-          <%= link_to I18n.t('nav.preauth.help'), help_path %>
-        </li>
-        <li class="divider"></li>
-        <li>
-          <%= link_to I18n.t('auth.logout.link'), destroy_user_session_path, rel: :nofollow %>
-        </li>
-        <li>
-          <%= link_to I18n.t('account.edit.link'), edit_user_registration_path %>
-        </li>
-        <li>
-          <a href="#{edit_user_registration_path}">
-            <%= render 'users/avatar', size: :tiny %>
-          </a>
-        </li>
-      <% else %>
-        <li class="divider"></li>
-        <li>
-          <%= link_to 'CREATE REMINDER', new_user_registration_path, {class: 'radius button small success', style: "border: none; box-shadow: none; outline: none;"} %>
-        </li>
-        <li>
-          <%= link_to I18n.t('nav.preauth.pricing'), pricing_path %>
-        </li>
-        <li style="margin-right: 8px; padding-left: 20px;">
-        </li>
-        <li>
-          <%= link_to I18n.t('auth.login.link'), new_user_session_path, {class: ''} %>
-        </li>
-        <li>
-          <%= link_to I18n.t('auth.signup.link'), new_user_registration_path, {} %>
-        </li>
-      <% end %>
+        </div>
+        <form class="m-2 flex">
+          <input class="rounded-l-lg p-2 border-t placeholder-gray-800 mr-0 border-b border-l text-white border-black bg-white" placeholder="your@mail.com"/>
+          <button class="px-2 pl-6 pr-6 border-l rounded-r-lg bg-black text-white font-bold pt-2 pb-2 uppercase border-black border-t border-b border-r">Get started</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </nav>

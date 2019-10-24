@@ -37,26 +37,25 @@
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
 
-      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_pack_tag 'stylesheets', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     </head>
-
-    <body class="controller__#{controller_name} action__#{action_name}">
+    <body class="controller__#{controller_name} action__#{action_name} min-h-screen bg-white">
       <%= render 'layouts/navigation'%>
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="errors__container">
-            <%= render 'layouts/messages' %>
+      <div class="container mx-auto">
+        <div class="errors__container">
+          <%= render 'layouts/messages' %>
+        </div>
+        <div>
           <%= yield %>
-        <% if controller_name != 'pages' %>
-          <div class="row">
-            <div class="large-12 columns">
-              <%= render 'layouts/footer' %>
-            </div>
-          </div>
-        <% else %>
-          <%= render 'pages/home/signup' %>
-        <% end %>
+        </div>
+        <div>
+          <% if controller_name != 'pages' %>
+            <%= render 'layouts/footer' %>
+          <% else %>
+            <%= render 'pages/home/signup' %>
+          <% end %>
+        </div>
     </body>
   </html>
 <% end %>
