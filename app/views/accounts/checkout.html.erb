@@ -3,3 +3,4 @@
 %form{:action => "/create_subscription.php", :method => "POST"}
   %script.stripe-button{ "data-amount" => "2000", "data-description" => "Premium S", "data-image" => "images/marketplace.png", "data-key" => Rails.configuration.stripe[:publishable_key], "data-label" => "Sign Me Up!", "data-name" => "Remind To", :src => "https://checkout.stripe.com/checkout.js"}
     :cdata
+

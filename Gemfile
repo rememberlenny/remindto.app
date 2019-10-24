@@ -54,10 +54,12 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'maily'
 gem 'cancancan'
-gem "haml-rails", "~> 2.0"
+gem 'haml'
+gem "haml-rails"
 gem 'draper'
 gem 'addressable'
 gem 'settingslogic'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

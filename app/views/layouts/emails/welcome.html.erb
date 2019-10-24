@@ -1,0 +1,150 @@
+<%# Ink v1.0.5 - Copyright 2013 ZURB Inc %>
+<%# http://zurb.com/ink/downloads/templates/hero.html %>
+<!DOCTYPE html>
+<html <%= tag_options({xmlns: "http://www.w3.org/1999/xhtml"}, false) %>>
+  <head>
+    <meta <%= tag_options({content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}, false) %>>
+    <meta <%= tag_options({content: "width=device-width", name: "viewport"}, false) %>>
+    <%= find_and_preserve(Haml::Filters::Css.render_with_options(
+"#{Rails.application.assets.find_asset('emails/inline').to_s.html_safe}\n", _hamlout.options)) %>
+    <style <%= tag_options({type: 'text/css', 'data-premailer' => 'ignore'}, false) %>>
+      <%= "#{Rails.application.assets.find_asset('emails/include').to_s.html_safe}" %>
+    </style>
+  </head>
+  <body>
+    <table class='body'>
+      <tr>
+        <td class='center' <%= tag_options({align: "center", valign: "top"}, false) %>>
+          <center>
+            <table class='row header'>
+              <tr>
+                <td class='center' <%= tag_options({align: "center"}, false) %>>
+                  <center>
+                    <table class='container'>
+                      <tr>
+                        <td class='wrapper last'>
+                          <table class='twelve columns'>
+                            <tr>
+                              <td class='six sub-columns'>
+                                <img <%= tag_options({src: "#{asset_url('sendlatericon-icon.png')}"}, false) %>>
+                              </td>
+                              <td class='six sub-columns last' <%= tag_options({align: "right", style: "text-align:right; vertical-align:middle;"}, false) %>></td>
+                              <td class='expander'></td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </center>
+                </td>
+              </tr>
+            </table>
+            <br>
+            <table class='container'>
+              <tr>
+                <td>
+                  <!-- content start -->
+                  <table class='row'>
+                    <tr>
+                      <td class='wrapper last'>
+                        <table class='twelve columns'>
+                          <tr>
+                            <td>
+                              <h1><%= yield :title %></h1>
+                              <% if content_for? :lead %>
+                                <p class='lead'><%= yield :lead %></p>
+                              <% end %>
+                            </td>
+                            <td class='expander'></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <% if content_for? :callout %>
+                    <table class='row callout'>
+                      <tr>
+                        <td class='wrapper last'>
+                          <table class='twelve columns'>
+                            <tr>
+                              <td class='panel'>
+                                <%= yield :callout %>
+                              </td>
+                              <td class='expander'></td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  <% end %>
+                  <table class='row'>
+                    <tr>
+                      <td class='wrapper last'>
+                        <table class='twelve columns'>
+                          <tr>
+                            <td>
+                              <%= yield %>
+                            </td>
+                            <td class='expander'></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <% if content_for? :action_button %>
+                    <table class='row'>
+                      <tr>
+                        <td class='wrapper last'>
+                          <table class='three columns'>
+                            <tr>
+                              <td>
+                                <table class='button'>
+                                  <tr>
+                                    <td>
+                                      <%= yield :action_button %>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                              <td class='expander'></td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  <% end %>
+                  <table class='row'>
+                    <tr>
+                      <td class='wrapper last'>
+                        <table class='twelve columns'>
+                          <tr>
+                            <td <%= tag_options({align: "center"}, false) %>>
+                              <center>
+                                <p <%= tag_options({style: "text-align:center;"}, false) %>>
+                                  <a <%= tag_options({href: terms_url}, false) %>>Terms</a>
+                                  |
+                                  <a <%= tag_options({href: privacy_url}, false) %>>Privacy</a>
+                                  <% if @unsubscribe_url %>
+                                    |
+                                    <a <%= tag_options({href: @unsubscribe_url}, false) %>>
+                                      <unsubscribe>Unsubscribe</unsubscribe>
+                                    </a>
+                                  <% end %>
+                                </p>
+                              </center>
+                            </td>
+                            <td class='expander'></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </center>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

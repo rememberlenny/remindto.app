@@ -1,0 +1,182 @@
+<% id ||= 'destroy-modal' %>
+<% i18n_prefix = i18n_prefix.present? ? "#{i18n_prefix}." : '' %>
+<div class='reveal-modal medium fixed-modal' <%= tag_options({id: id, data: {reveal: ''}, tabindex: -1, role: 'dialog', 'aria-labelledby' => "#{id}-title", 'aria-hidden' => true}, false) %>>
+  <form id='form-maker-1'>
+    <div class='row'>
+      <div class='large-12 columns'>
+        <div class='text-center'>
+          <h2 <%= tag_options({id: "#{id}-title"}, false) %>>
+            Build a new reminder
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-12 columns'>
+        <label>
+          Call to action
+          <input id='cta-input' <%= tag_options({:type => "text", placeholder: "Call to action (e.g. Remind me to read this later"}, false) %>>
+        </label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-12 columns'>
+        <label>
+          Description
+          <input id='description-input' <%= tag_options({:type => "text", placeholder: "Description (e.g. Get an email reminder in your inbox to come back.)"}, false) %>>
+        </label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-12 columns text-center'>
+        <p>
+          <%= link_to "Upgrade", pricing_path %>
+          for more customization...
+        </p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-12 columns text-center'>
+        <button class='small-12' <%= tag_options({class: "info button small small-12 disabled", disabled: "disabled", data: {dismiss: ''}}, false) %>>
+          Upload Logo
+        </button>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-8 columns'>
+        <ul class='small-block-grid-5 fr'>
+          <li>
+            <a class='disabled button small-12' <%= tag_options({:href => "#", style: "background: #ff4500; border: none;"}, false) %>></a>
+          </li>
+          <li>
+            <a class='disabled button small-12' <%= tag_options({:href => "#", style: "background: #fab81e; border: none;"}, false) %>></a>
+          </li>
+          <li>
+            <a class='disabled button small-12' <%= tag_options({:href => "#", style: "background: #19cf86; border: none;"}, false) %>></a>
+          </li>
+          <li>
+            <a class='disabled button small-12' <%= tag_options({:href => "#", style: "background: #1b95e0; border: none;"}, false) %>></a>
+          </li>
+          <li>
+            <a class='disabled button small-12' <%= tag_options({:href => "#", style: "background: #f58ea8; border: none;"}, false) %>></a>
+          </li>
+        </ul>
+      </div>
+      <div class='small-4 columns'>
+        <ul class='small-block-grid-1 small-12'>
+          <li>
+            <input class='small-12' <%= tag_options({:type => "text", disabled: "disabled", placeholder: "#1a93f8"}, false) %>>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-12 columns'>
+        <button class='small-12' <%= tag_options({data: {dismiss: ''}}, false) %>>
+          Create
+        </button>
+      </div>
+    </div>
+  </form>
+  <form class='hidden' id='form-maker-2'>
+    <div class='row'>
+      <div class='large-12 columns'>
+        <h2 class='text-center' <%= tag_options({id: "#{id}-title"}, false) %>>
+          Get your account
+        </h2>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-12 columns'>
+        <label>
+          Email
+          <input id='email-input' class='user-sign-in-link-email' <%= tag_options({:type => "text", placeholder: "name@domain.com"}, false) %>>
+        </label>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-6 columns'>
+        <button class='send-sign-in-link small-12' <%= tag_options({data: {dismiss: ''}}, false) %>>
+          Send signin link
+        </button>
+      </div>
+      <div class='large-6 columns'>
+        <button class='small-12' <%= tag_options({data: {dismiss: ''}}, false) %>>
+          Use password
+        </button>
+      </div>
+    </div>
+    <div class='row success-buttons-submission hidden'>
+      <div class='large-12 columns'>
+        <button class='small-12' <%= tag_options({data: {dismiss: ''}}, false) %>>
+          Check your inbox
+        </button>
+      </div>
+    </div>
+  </form>
+  <a class='close-reveal-modal'>×</a>
+</div>
+<div class='reveal-modal-bg'></div>
+<% content_for :on_ready do %>
+  function prepareFormMaker() {
+    $('#form-maker-2').addClass('hidden');
+    $('#form-maker-1').removeClass('hidden');
+  }
+  function prepareAccount(data) {
+    window.currentForm = data;
+    $('#form-maker-1').addClass('hidden');
+    $('#form-maker-2').removeClass('hidden');
+  }
+  function submitTheEmail(email) {
+    $.ajax('/user/invite', {
+      method: 'POST',
+      data: {
+        new_user:{
+          email: email
+        }
+      }
+    }).done( function(data){
+      location.href = '/check_email'
+    });
+  }
+  $(document).ready(function(){
+    $('body').on('click', '.send-sign-in-link', function(evt){
+      evt.preventDefault();
+      var email = $('#email-input').val();
+      submitTheEmail(email);
+    });
+    $('body').on('click', '.send-sign-in-link', function(e){
+      var email = $('.user-sign-in-link-email').val();
+    });
+    $('body').on('click', '.display-modal', function(evt){
+      evt.preventDefault();
+      $('body').addClass('show-modal-page');
+      prepareFormMaker();
+    });
+  
+    $('body').on('click', '.close-reveal-modal', function(evt){
+      evt.preventDefault();
+      $('body').removeClass('show-modal-page');
+    });
+  
+    $('#form-maker-1').on('submit', function(evt){
+      evt.preventDefault();
+      var cta = $('#cta-input').val();
+      var description = $('#description-input').val();
+      $.ajax('/reminder_form', {
+        method: 'POST',
+        data: {
+          reminder:{
+            cta: cta,
+            description: description
+          }
+        }
+      }).done( function(data){
+        prepareAccount(data);
+      });
+  
+    });
+  
+  
+  });
+<% end %>
