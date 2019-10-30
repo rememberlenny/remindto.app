@@ -1,6 +1,5 @@
 class AccountsController < ApplicationController
   load_and_authorize_resource :user
-  skip_before_action :verify_authenticity_token
   before_action :add_allow_credentials_headers
 
   def new
