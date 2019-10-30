@@ -1,20 +1,20 @@
 <div class="row dashboards" style='postion: relative'>
   <nav class="top-bar" data-topbar='' options-custom_back_text="false">
     <section class="top-bar-section">
-      <ul class="right">
-        <li>
+      <ul class="flex justify-center">
+        <li class="mr-6">
           <%= link_to "View", user_home_path, { data: { button: "view"} } %>
         </li>
-        <li>
+        <li class="mr-6">
           <%= link_to "Edit", edit_account_path(current_user.account_id), { data: { button: "edit"} } %>
         </li>
-        <li>
+        <li class="mr-6">
           <%= link_to "Signups", signups_account_path(current_user.account_id), { data: { button: "signups"} } %>
         </li>
-        <li>
+        <li class="mr-6">
           <%= link_to "Integrations", integrations_account_path(current_user.account_id), { data: { button: "integrations"} } %>
         </li>
       </ul>
     </section>
   </nav>
-</div>
+</div> 

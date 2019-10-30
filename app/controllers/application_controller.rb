@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
+  skip_forgery_protection
 
   # Devise, require authenticate by default
   before_action :authenticate_user!

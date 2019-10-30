@@ -20,7 +20,7 @@
         <div class="sendlater-email-input">
           <form class="sll-email-form row" action="" style="margin: 1% 0;overflow: auto;">
             <input class="sendlater-email-input-field sll-email" name="email" placeholder="Email" required style="box-sizing: border-box;  height: 37px; background: 0;border-radius: 0;font: 16px sans-serif;margin: 0;outline: 0;font-size: 14px;display: block;margin-bottom: 10px;border: 1px solid #ccc;padding: 8px;float: left;width: 158px; max-width: 100%; border-left: none; box-shadow: none; border-right: none; margin-right: 15px; border-bottom-style: dashed; border-bottom-width: 2px;border-top: none; " type="email">
-            <input class="email-input-submit col c3" style="background: #{color};  box-sizing: border-box; height: 37px; color: #fff; border-radius: 0;font: 16px sans-serif;margin: 0;outline: 0;font-size: 14px;display: block;margin-bottom: 10px;border: 1px solid #ccc;padding: 8px;float: left; width: 70px; font-weight:800; max-width: 100%;     " type="submit" value="Remind">
+            <input class="email-input-submit col c3" style="background: <%= color %>;  box-sizing: border-box; height: 37px; color: #fff; border-radius: 0;font: 16px sans-serif;margin: 0;outline: 0;font-size: 14px;display: block;margin-bottom: 10px;border: 1px solid #ccc;padding: 8px;float: left; width: 70px; font-weight:800; max-width: 100%;     " type="submit" value="Remind">
           </form>
         </div>
         <div class="sendlater-time-option">
@@ -45,7 +45,7 @@
   </div>
 </div>
 <% if Rails.env.development? %>
-  <script type="text/javascript" src="http://localhost:3000/widget-page/#{@id}"></script>
+  <script type="text/javascript" src="http://localhost:3000/widget-page/<%= @id %>"></script>
 <% else %>
   %script{:type=>"text/javascript", :src=>"https://www.remindtoapp.com/widget-page/" + @id}
 <% end %>

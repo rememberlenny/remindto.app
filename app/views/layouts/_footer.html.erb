@@ -1,22 +1,19 @@
 <footer class="page__footer">
-  <ul>
-    <li>
-      <%= link_to 'RemindToRead', root_path %>
+  <ul class="flex justify-center">
+    <li class="mr-6">
+      <%= link_to 'RemindToRead', root_path, { class: "text-blue-500 hover:text-blue-800" } %>
     </li>
-    <li>
-      <%= link_to 'About', about_path %>
+    <li class="mr-6">
+      <%= link_to link_to 'About', about_path %>
     </li>
-    <li>
-      <%= link_to 'Contact Us', contact_path %>
+    <li class="mr-6">
+      <%= link_to link_to 'Contact Us', contact_path %>
     </li>
-    <li>
-      <%= link_to 'Terms', terms_path %>
+    <li class="mr-6">
+      <%= link_to link_to 'Terms', terms_path %>
     </li>
-    <li>
-      <%= link_to 'Privacy Policy', privacy_path %>
-    </li>
-    <li>
-      <%= link_to 'Optout', optout_path %>
+    <li class="mr-6">
+      <%= link_to link_to 'Privacy Policy', privacy_path %>
     </li>
   </ul>
 </footer>

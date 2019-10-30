@@ -62,6 +62,11 @@ GEM
       zeitwerk (~> 2.1, >= 2.1.8)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ahoy_matey (3.0.1)
+      activesupport (>= 5)
+      device_detector
+      geocoder (>= 1.4.5)
+      safely_block (>= 0.2.1)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -96,6 +101,7 @@ GEM
     connection_pool (2.2.2)
     crass (1.0.5)
     debug_inspector (0.0.3)
+    device_detector (1.0.2)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -108,6 +114,7 @@ GEM
       activemodel-serializers-xml (>= 1.0)
       activesupport (>= 5.0)
       request_store (>= 1.0)
+    errbase (0.1.1)
     erubi (1.9.0)
     erubis (2.7.0)
     faraday (0.17.0)
@@ -116,6 +123,7 @@ GEM
     foreman (0.86.0)
     friendly_id (5.2.5)
       activerecord (>= 4.0.0)
+    geocoder (1.5.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.1.2)
@@ -257,6 +265,8 @@ GEM
     ruby_parser (3.14.0)
       sexp_processor (~> 4.9)
     rubyzip (2.0.0)
+    safely_block (0.2.2)
+      errbase (>= 0.1.1)
     sanitize (5.1.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.8.0)
@@ -333,6 +343,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable
+  ahoy_matey
   annotate
   better_errors
   binding_of_caller
