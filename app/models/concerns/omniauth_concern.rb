@@ -1,4 +1,4 @@
-module Concerns::OmniauthConcern
+module OmniauthConcern
   extend ActiveSupport::Concern
 
   included do

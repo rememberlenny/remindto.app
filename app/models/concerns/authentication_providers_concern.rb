@@ -1,4 +1,4 @@
-module Concerns::AuthenticationProvidersConcern
+module AuthenticationProvidersConcern
   extend ActiveSupport::Concern
 
   def provider_name

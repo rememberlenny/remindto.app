@@ -1,8 +1,8 @@
 class LaterSchedulerWorker
   include Sidekiq::Worker
-  include Sidetiq::Schedulable
+  # include Sidetiq::Schedulable
 
-  recurrence { minutely(1) }
+  # recurrence { minutely(1) }
 
   def perform
     Later.check_for_ready_laters

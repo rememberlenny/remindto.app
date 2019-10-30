@@ -1,4 +1,4 @@
-module Concerns::UserImagesConcern
+module UserImagesConcern
   extend ActiveSupport::Concern
 
   included do
