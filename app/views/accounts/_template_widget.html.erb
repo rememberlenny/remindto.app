@@ -1,36 +1,52 @@
-- color = '#1a93f8'
-
-%h5
-  %u
+<% color = '#1a93f8' %>
+<h5>
+  <u>
     Preview
-
-.view_sample.container.text-center
+  </u>
+</h5>
+<div class="view_sample container text-center">
   <%= image_tag "remind-logo-small.png", class: "shrink-logo" %>
-  #template_content
-    %h1#account_company_name_output.list-page-title.1{"data-confirmation" => "Thanks for signing up!", :style => ""}
-      %span
+  <div id="template_content">
+    <h1 class="list-page-title 1" data-confirmation="Thanks for signing up!" id="account_company_name_output">
+      <span>
         {{company_name}}
-    %div#account_domain_output.list-desc.show-desc-mobile.list-page-paragraph
-      %span
+      </span>
+    </h1>
+    <div class="list-desc show-desc-mobile list-page-paragraph" id="account_domain_output">
+      <span>
         {{domain}}
-
-  .clearfix
-    .sendlater-container.accept-email
-      .sendlater-email-input
-        %form.sll-email-form.row{:action => "", :style => ""}
-          %input.sendlater-email-input-field.sll-email{:name => "email", :placeholder => "Email", :required => "", :style => "", :type => "email"}/
-          %input.email-input-submit.col.c3{:style => "", :type => "submit", :value => "Remind"}/
-      .clearfix
-        .sendlater-time-option
-          %p
+      </span>
+    </div>
+  </div>
+  <div class="clearfix">
+    <div class="sendlater-container accept-email">
+      <div class="sendlater-email-input">
+        <form class="sll-email-form row">
+          <input class="sendlater-email-input-field sll-email" name="email" placeholder="Email" type="email">/</input>
+          <input class="email-input-submit col c3" type="submit" value="Remind">/</input>
+        </form>
+      </div>
+      <div class="clearfix">
+        <div class="sendlater-time-option">
+          <p>
             Scheduled! Reminder will arrive
-            %select.time-option-change.time-option-change-options{:style => ""}
-              %option.visible{:value => "1 minute"} now
-              %option{:value => "4 hours"} in 4 hours
-              %option{:value => "12 hours"} in 8 hours
-              %option{:value => "24 hours"} tomorrow
-              %option{:value => "72 hours"} in 3 days
-        .clearfix
-          %i
-            %small.small-sub{style: ""}
+            <select class="time-option-change time-option-change-options">
+              <option class="visible" value="1 minute">now</option>
+              <option value="4 hours">in 4 hours</option>
+              <option value="12 hours">in 8 hours</option>
+              <option value="24 hours">tomorrow</option>
+              <option value="72 hours">in 3 days</option>
+            </select>
+          </p>
+        </div>
+        <div class="clearfix">
+          <i>
+            <small class="small-sub">
               (Click the time above to change when the reminder is sent.)
+            </small>
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

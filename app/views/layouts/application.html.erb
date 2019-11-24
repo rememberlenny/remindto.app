@@ -6,12 +6,12 @@
       <meta charset="utf-8">
       <meta content='width=device-width, initial-scale=1.0' name='viewport'>
       <% if @referrer %>
-        <meta name="remindtoread-referrer" content="#{@referrer}">
+        <meta name="remindtoread-referrer" content="<%=@referrer%>">
       <% end %>
       <title>
         <%= content_for?(:title) ? yield(:title) : I18n.t('brand.name') %>
       </title>
-      <meta content="#{(content_for?(:description) ? yield(:description) : I18n.t('brand.name')), name: 'description'}}">
+      <meta content="<%= (content_for?(:description) ? yield(:description) : I18n.t('brand.name'))%>" name="description">
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
       <%= csrf_meta_tags %>
       <%= yield :head %>
@@ -19,7 +19,7 @@
         <%= render 'reminder_form_page/style.css.erb' %>
       </style>
     </head>
-  <body class="wrapper controller__#{controller_name} action__#{action_name} as_embed">
+  <body class="wrapper controller__<%= controller_name %> action__<%= action_name %> as_embed">
     <div class="list-page kabuki site-wrapper no-logo controller__reminder_form_page action__show">
       <div class="site-wrapper-inner">
         <%= yield %>
@@ -40,7 +40,7 @@
       <%= stylesheet_pack_tag 'stylesheets', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     </head>
-    <body class="controller__#{controller_name} action__#{action_name} min-h-screen bg-white">
+    <body class="controller__<%= controller_name %> action__<%= action_name %> min-h-screen bg-white">
       <%= render 'layouts/navigation'%>
       <div class="container mx-auto">
         <div class="errors__container">

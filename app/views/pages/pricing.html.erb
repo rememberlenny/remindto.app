@@ -1,87 +1,61 @@
-<div class="text-center pricing-block row">
-  <div class="pricing-head">
-    <h1>Remind your users on their terms.</h1>
-    <h2 class="subtitle">Cancel any time.</h2>
-  </div>
-  <table class="pricing-table">
-    <thead>
-      <tr>
-        <th style="width: 100%; visibility: hidden;"></th>
-        <th style="width: 25%; min-width: 300px;border-left: solid 1px #dddddd">
-          <h4 class="text-center product-title subtitle">Free</h4>
-          <h5 class="text-center"><span class="text-center product-amount">$0</span><span class="pricing-detail">/mo</span></h3>
-        </th>
-        <th style="width: 25%; min-width: 300px;">
-          <h4 class="text-center product-title subtitle">Premium</h4>
-          <h5 class="text-center"><span class="text-center product-amount">$20</span><span class="pricing-detail">/mo</span></h3>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="border-top: solid 1px #dddddd;"><h5>Export signups anytime</h5></td>
-        <td>X</td>
-        <td>X</td>
-      </tr>
-      <tr>
-        <td><h5>All Integrations</h5></td>
-        <td>X</td>
-        <td>X</td>
-      </tr>
-      <tr>
-        <td><h5>Customize form color, logo, and bg</h5></td>
-        <td></td>
-        <td>X</td>
-      </tr>
-      <tr>
-        <td><h5>Custom Branding on Email Templates</h5></td>
-        <td></td>
-        <td>X</td>
-      </tr>
-      <tr class="no-border">
-        <td></td>
-        <td></td>
-        <td>
-          <% if user_signed_in? %>
-            <form action="<%= checkout_subscription_path %>" method="POST">
-              <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-image="<%= image_url 'remind-logo-small.png' %>"
-                data-name="Remind To"
-                data-description="Recuring monthly subscription"
-                data-amount="2000"
-                data-label="Sign Me Up!">
-              </script>
-            </form>
-          <% else %>
-            <%= link_to "Signup", new_user_registration_path, class: "medium-12 button radius" %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="clearfix"></div>
 
-</div>
-
-<div class="row col-centered question-block">
-  <h1 class="text-center question-head">Questions</h1>
-  <div class="medium-6 column">
-    <h4>Q: What is a reminder?</h4>
-    <p>A reminder is an email sent to a user who requests a Remind To email. Each email sent is a "reminder".</p>
+<section class="py-12 px-4 text-center">
+    <h2 class="text-5xl mt-2 mb-6 leading-tight font-heading">Remind your users on their terms</h2>
   </div>
-  <div class="medium-6 column">
-    <h4>Q: What are white-label emails?</h4>
-    <p>Free accounts reminders will contain the Remind To logo. All paid accounts can remove and customize the displayed logo.</p>
+</section>
+          
+<section class="py-8">
+  <div class="flex flex-wrap max-w-4xl mx-auto">
+    <div class="w-full md:w-1/2 p-4 mb-2 md:mb-0">
+      <div class="py-3 px-6 border"><img class="ml-auto" src="placeholders/icons/badge.svg" alt="">
+        <h3 class="text-5xl mb-3 font-heading font-semibold">$9 / mo</h3>
+        <p class="mb-8 text-gray-500 leading-relaxed">Just enough paper for small business. Not enough to waste it on fluffy animals photos.</p>
+        <h3 class="mb-3 font-heading font-semibold">Includes</h3>
+        <ul class="mb-8 list-inside list-disc text-gray-500">
+          <li class="mb-1">Export signups anytime</li>
+          <li class="mb-1">All Integrations</li>
+          <li class="mb-1">Custom Branding on Email Templates</li>
+          <li class="mb-1">Free help desk consultancy</li>
+        </ul>
+        <%= link_to 'Start here', new_user_registration_path, class: 'inline-block w-full py-3 px-5 leading-none text-center text-blue-700 bg-indigo-100 hover:bg-indigo-200 rounded shadow' %>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 p-4 mb-2 md:mb-0">
+      <div class="py-3 px-6 border"><img class="ml-auto" src="placeholders/icons/badge.svg" alt="">
+        <h3 class="text-5xl mb-3 font-heading font-semibold">$49 / mo</h3>
+        <p class="mb-8 text-gray-500 leading-relaxed">That’s what we’re talking about! More reams of paper is a really reamful choice.</p>
+        <h3 class="mb-3 font-heading font-semibold">Includes</h3>
+        <ul class="mb-8 list-inside list-disc text-gray-500">
+          <li class="mb-1">Export signups anytime</li>
+          <li class="mb-1">All Integrations</li>
+          <li class="mb-1">Custom Branding on Email Templates</li>
+          <li class="mb-1">Free help desk consultancy</li>
+        </ul>
+        <%= link_to 'Start here', new_user_registration_path, class: 'inline-block w-full py-3 px-5 leading-none text-center text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow' %>
+      </div>
+    </div>
   </div>
-  <div class="medium-6 column">
-    <h4>Q: Can I export my data?</h4>
-    <p>Yes! We provide a way to export your site's reminder activity.</p>
+</section>
+          
+<section class="py-12 px-4">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-4xl text-center mb-4 font-heading">Frequently Asked Questions</h2>
+    <div class="p-4 mb-2 border-b">
+      <button class="flex w-full text-left"><span class="flex-grow font-semibold">Q: What is a reminder?</span><img class="w-12" src="placeholders/icons/angle-bottom.svg" alt=""></button>
+      <p class="mt-1">A reminder is an email sent to a user who requests a Remind To email. Each email sent is a "reminder".</p>
+    </div>
+    <div class="p-4 mb-2 border-b">
+      <button class="flex w-full text-left"><span class="flex-grow font-semibold">Q: What are white-label emails?</span><img class="w-12" src="placeholders/icons/angle-bottom.svg" alt=""></button>
+      <p class=" mt-1">Free accounts reminders will contain the Remind To logo. All paid accounts can remove and customize the displayed logo.</p>
+    </div>
+    <div class="p-4 mb-2 border-b">
+      <button class="flex w-full text-left"><span class="flex-grow font-semibold">Q: Can I export my data?</span><img class="w-12" src="placeholders/icons/angle-bottom.svg" alt=""></button>
+      <p class=" mt-1">Yes! We provide a way to export your site's reminder activity.</p>
+    </div>
+    <div class="p-4 mb-2 border-b">
+      <button class="flex w-full text-left"><span class="flex-grow font-semibold">Q: For more questions, who can I talk to?</span><img class="w-12" src="placeholders/icons/angle-bottom.svg" alt=""></button>
+      <p class=" mt-1">For product or service questions, contact Lenny at lenny@remindtoapp.com. For security questions, please contact security@remindtoapp.com.</p>
+    </div>
   </div>
-  <div class="medium-6 column">
-    <h4>Q: For more questions, who can I talk to?</h4>
-    <p>For product or service questions, contact Lenny at lenny@remindtoapp.com. For security questions, please contact security@remindtoapp.com.</p>
-  </div>
-  <div class="clearfix"></div>
-</div>
+</section>
+          

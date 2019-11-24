@@ -1,29 +1,17 @@
   </div>
 </div>
-<div class="large-12 bg-color-grey footer-signup">
-  <div class="row">
-    <div class="signup large-12 column text-center">
-      <%= link_to 'Start here', new_user_registration_path, class: 'display-modal button radius success large' %>
-    </div>
+
+
+<section class="py-12 px-4">
+  <div class="w-full max-w-2xl mx-auto text-center">
+    <h2 class="text-5xl mt-4 mb-8 leading-tight font-heading">Get started</h2>
+      <div class="flex flex-wrap mb-4">
+        <div class="w-full">
+          <%= link_to 'Start here', new_user_registration_path, class: 'inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded md:rounded-l-none' %>
+        </div>
+      </div>
   </div>
-  <footer class="page__footer">
-  <ul class="flex mb-4 mt-4 justify-center">
-    <li class="mr-6">
-      <%= link_to 'RemindToRead', root_path, { class: "text-blue-500 hover:text-blue-800" } %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'About', about_path %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'Contact Us', contact_path %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'Terms', terms_path %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'Privacy Policy', privacy_path %>
-    </li>
-  </ul>
-</footer>
-</div>
+</section>
+
+<%= render partial: 'layouts/footer' %>
 

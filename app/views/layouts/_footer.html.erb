@@ -1,19 +1,9 @@
-<footer class="page__footer">
-  <ul class="flex justify-center">
-    <li class="mr-6">
-      <%= link_to 'RemindToRead', root_path, { class: "text-blue-500 hover:text-blue-800" } %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'About', about_path %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'Contact Us', contact_path %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'Terms', terms_path %>
-    </li>
-    <li class="mr-6">
-      <%= link_to link_to 'Privacy Policy', privacy_path %>
-    </li>
-  </ul>
+<footer class="flex flex-wrap flex-col items-center lg:flex-row p-4">
+  <div class="flex flex-shrink-0">
+    <%= link_to 'Home', root_path, { class: "text-xl text-indigo-500 font-semibold" } %>
+  </div>
+  <div class="mt-4 lg:ml-auto lg:mt-0">
+    <%= link_to 'About', about_path, { class: "inline-block mt-0 mb-4 lg:mb-0 mr-8 text-blue-900 hover:text-blue-700" } %>
+    <%= link_to 'Privacy policy', privacy_path, { class: "inline-block mt-0 mb-4 lg:mb-0 mr-8 text-blue-900 hover:text-blue-700" } %>
+  </div>
 </footer>

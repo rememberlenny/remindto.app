@@ -1,26 +1,24 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<section class="py-12 px-4 text-center">
+  <div class="w-full max-w-2xl mx-auto">
+    <h2 class="text-5xl mt-2 mb-6 leading-tight font-heading">Login</h2>
   </div>
+</section>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<section class="py-8 pb-24">
+  <div class="w-full max-w-sm mx-auto">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="mb-4">
+      <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email", class: "appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="mb-4">
+      <%= f.password_field :password, placeholder: "Password", autocomplete: "current-password", class: "appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-200 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none" %>
+    </div>
+    <div class="mb-5">
+      <%= f.submit "Log in", class: "inline-block w-full py-4 px-8 leading-none text-white bg-indigo-500 hover:bg-indigo-600 rounded shadow" %>
+    </div>
+    <p class="text-sm text-center text-gray-500">
+      <%= render "devise/shared/links" %>
+    </p>
+    <% end %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

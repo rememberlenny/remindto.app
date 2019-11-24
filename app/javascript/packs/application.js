@@ -8,7 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-import './stylesheets.css'
+import 'stylesheets/application.css'
 import ahoy from "ahoy.js";
 
 window.ahoy = ahoy;

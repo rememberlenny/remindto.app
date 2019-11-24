@@ -1,6 +1,7 @@
 # Route prefixes use a single letter to allow for vanity urls of two or more characters
 Rails.application.routes.draw do
 
+  get 'telemetry/track'
   get '/getting_started' => 'widget_maker#new', as: 'widget_maker'
 
   # if defined? Sidekiq
@@ -101,6 +102,8 @@ Rails.application.routes.draw do
   post '/reminder_form' => 'widget_maker#create'
   get '/check_email' => 'widget_maker#check_email'
   post '/user/invite' => 'widget_maker#new_user_by_email_only'
+
+  post '/ra/track' => 'telemetry#track'
 
   get '/widget/:id/button'    => 'widget#button'
   get '/widget/:id/init'      => 'widget#init_script'

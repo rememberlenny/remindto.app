@@ -104,8 +104,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def permit_params
-    devise_parameter_sanitizer.for(:sign_up) << SANITIZED_PARAMS
-    devise_parameter_sanitizer.for(:account_update) << SANITIZED_PARAMS
+    devise_parameter_sanitizer.permit(:sign_up, keys: SANITIZED_PARAMS)
+    devise_parameter_sanitizer.permit(:account_update, keys: SANITIZED_PARAMS)
   end
 
   def build_resource(*args)
