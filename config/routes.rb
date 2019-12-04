@@ -1,6 +1,7 @@
 # Route prefixes use a single letter to allow for vanity urls of two or more characters
 Rails.application.routes.draw do
-
+  resources :email_templates
+  post '/remind/new' => 'laters#test'
   get 'telemetry/track'
   get '/getting_started' => 'widget_maker#new', as: 'widget_maker'
 
@@ -113,5 +114,5 @@ Rails.application.routes.draw do
   get '/service/oembed' => 'service#oembed', as: 'oembed'
   get '/f/:id' => 'reminder_form_page#show', as: 'reminder_form_page'
 
-  root 'pages#home'
+  root 'dashboards#home'
 end

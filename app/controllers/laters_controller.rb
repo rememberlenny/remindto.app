@@ -1,8 +1,12 @@
 class LatersController < ApplicationController
-  load_and_authorize_resource :user, :except => :new
-  skip_authorization_check :only => :new
-  skip_before_action :authenticate_user!, :only => :new
-  before_action :add_allow_credentials_headers, :only => :new
+  load_and_authorize_resource :user, :except =>  [:new, :test]
+  skip_authorization_check :only => [:new, :test]
+  skip_before_action :authenticate_user!, :only => [:new, :test]
+  before_action :add_allow_credentials_headers, :only =>  [:new, :test]
+
+  def test
+    render json: {response: 'Success', email: params, message: 'Good job'}
+  end
 
   def index
     if @current_user.account_id.nil?
