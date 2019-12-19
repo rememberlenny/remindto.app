@@ -1,6 +1,5 @@
 # Route prefixes use a single letter to allow for vanity urls of two or more characters
 Rails.application.routes.draw do
-  resources :email_templates
   post '/remind/new' => 'laters#test'
   get 'telemetry/track'
   get '/getting_started' => 'widget_maker#new', as: 'widget_maker'
@@ -18,7 +17,7 @@ Rails.application.routes.draw do
 
   # Static pages
   match '/error'      => 'pages#error', via: [:get, :post], as: 'error_page'
-  get '/rss'       => 'pages#medium', as: 'rss'
+  get '/rss'          => 'pages#medium', as: 'rss'
   get '/medium'       => 'pages#medium', as: 'medium'
   get '/hn'           => 'pages#medium', as: 'hn'
   get '/terms'        => 'pages#terms', as: 'terms'
@@ -57,6 +56,7 @@ Rails.application.routes.draw do
     resources :authentications, path: 'accounts'
   end
   get '/home'       => 'dashboards#home',   as: 'user_home'
+  get '/emails'     => 'dashboards#emails', as: 'user_email_templates'
   get '/install'    => 'dashboards#install',   as: 'install'
   get '/feed'       => 'laters#index',      as: 'later_feed'
   get '/feed/old'   => 'laters#old_index',  as: 'later_old_feed'
@@ -85,6 +85,7 @@ Rails.application.routes.draw do
   get '/reminder/:id/webhook/:webhook_id/edit' => 'webhook#edit', as: 'edit_webhook'
   get '/reminder/:id/webhook/:webhook_id/delete' => 'webhook#delete', as: 'delete_webhook'
 
+  resources :email_templates, path: 'emails'
 
   get '/checkout'           => 'accounts#checkout', as: 'checkout'
   post '/checkout_subscription' => 'accounts#checkout_subscription', as: 'checkout_subscription'

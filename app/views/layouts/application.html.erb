@@ -31,7 +31,7 @@
 <% else %>
   <html>
     <head>
-      <title>Remind To</title>
+      <title>Readturn</title>
       <meta charset="utf-8">
       <meta content='width=device-width, initial-scale=1.0' name='viewport'>
       
@@ -57,7 +57,9 @@
             <%= render 'pages/home/signup' %>
           <% end %>
         </div>
-        <div data-widget-host="habitat" class="preview"></div><script async src="http://localhost:8000/build/bundle.js"></script>
+        
+        <div data-remind-embed></div>
+        <script src="https://cdn.jsdelivr.net/npm/@remindto/remindembed@0.1.0/dist/bundle.min.js" defer></script>
     </body>
   </html>
 <% end %>

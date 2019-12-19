@@ -4,6 +4,9 @@ class DashboardsController < ApplicationController
   load_and_authorize_resource :user
   before_action :check_accounts
 
+  def emails
+  end
+
   def home
     if !@current_user.account_id
       redirect_to new_account_path, notice: "Create your first reminder form to get started"
