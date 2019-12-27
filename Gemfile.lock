@@ -202,7 +202,7 @@ GEM
     public_suffix (4.0.1)
     public_uid (2.0.0)
       activerecord (> 4.2)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-cors (1.1.0)
       rack (>= 2.0.0)
@@ -375,7 +375,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry (~> 0.12.2)
   public_uid
-  puma (~> 3.11)
+  puma (~> 3.12)
   rack-cors
   rails (~> 6.0.0)
   rails_best_practices
