@@ -203,7 +203,7 @@ GEM
     public_uid (2.0.0)
       activerecord (> 4.2)
     puma (3.12.1)
-    rack (2.0.7)
+    rack (2.0.8)
     rack-cors (1.1.0)
       rack (>= 2.0.0)
     rack-protection (1.5.5)
