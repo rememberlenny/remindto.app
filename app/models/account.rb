@@ -7,6 +7,14 @@ class Account < ActiveRecord::Base
   after_create :generate_uid
   after_create :send_welcome_emails
 
+  def self.find_param(param)
+    find_by! public_uid: param.split('-').first
+  end
+  
+  def to_param
+    "#{public_uid}-#{tile.gsub(/\s/,'-')}"
+  end
+
   def send_welcome_emails
     # UserMailer.delay.welcome_email(self.id)
     # UserMailer.delay_for(5.days).find_more_friends_email(self.id)
