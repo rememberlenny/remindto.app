@@ -1,18 +1,37 @@
-<div class="flex mb-4 -mx-2">
+<div class="flex mb-4 -mx-2 ">
   <div class="w-1/4 bg-gray-400 px-2">
     <%= render 'dash_sidenav' %>
   </div>
-  <div class="w-3/4 bg-gray-500 px-2">
-    <div class="flex">
-      <h2 class="font-bold text-2xl mt-4 mb-2">
-        Setup
-      </h2>
+  <div class="w-3/4 bg-white px-2">
+    <div class="flex mb-4">
+      <div class="w-2/4">
+        <h2 class="font-bold text-xl mt-4 mb-2">
+          Account ID
+        </h2>
+        <div>
+          <%= @account.uid %>
+        </div>
+      </div>
+      <div class="w-2/4">
+        <h2 class="font-bold text-xl mt-4 mb-2">
+          Status
+        </h2>
+      </div>
     </div>
     <div class="mb-3">
       <div class="w-full lg:max-w-full lg:flex  <%= is_domain_blank_class %> mb-3">
-        <div
-          class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-          <div class="mb-8">
+        <div class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+          <h2 class="font-bold text-xl mt-4 mb-2">
+            Website tracking
+          </h2>
+          <h2 class="font-bold text-l mt-4 mb-2">
+            Global site tag
+          </h2>
+          <p>
+            This is the Global Site Tag (gtag.js) tracking code for this property. Copy and paste this code as the first item into the <HEAD> of every webpage you want to track. If you already have a Global Site Tag on your page, simply add the config line from the snippet below to your existing Global Site Tag.
+          </p>
+          <div class="mt-4 mb-8">
+            <%= render 'script_tag' %>
             <p class="text-sm text-gray-600 flex items-center">
               Step 1
             </p>
@@ -34,7 +53,7 @@
             <div class="text-gray-900 font-bold text-xl mb-2">
               Put the following script tag in the footer of your website.
             </div>
-            <pre style="overflow-x: scroll; max-width: 100%;"><code>&lt;script type="text/javascript" src="<%= Rails.application.config.settings['env']['BASE_DOMAIN'] %>/widget/<%= @current_account.uid %>"&gt;&lt;/script&gt;</code></pre>
+            <pre style="overflow-x: scroll; max-width: 100%;"><code>&lt;script type="text/javascript" src="<%= Rails.application.config.settings['env']['BASE_DOMAIN'] %>/widget/<%= @account.uid %>"&gt;&lt;/script&gt;</code></pre>
           </div>
         </div>
       </div>

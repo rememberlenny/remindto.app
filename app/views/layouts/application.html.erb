@@ -42,24 +42,17 @@
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     </head>
     <body class="controller__<%= controller_name %> action__<%= action_name %> min-h-screen bg-white">
-      <%= render 'layouts/navigation'%>
-      <div class="container mx-auto">
+      <div class="font-sans bg-grey-lighter flex flex-col min-h-screen w-full">
+        <%= render 'layouts/navigation'%>
         <div class="errors__container">
           <%= render 'layouts/messages' %>
         </div>
         <div>
           <%= yield %>
         </div>
-        <div>
-          <% if controller_name != 'pages' %>
-            <%= render 'layouts/footer' %>
-          <% else %>
-            <%= render 'pages/home/signup' %>
-          <% end %>
-        </div>
-        
-        <div data-remind-embed></div>
-        <script src="https://cdn.jsdelivr.net/npm/@remindto/remindembed@0.1.0/dist/bundle.min.js" defer></script>
+
+        <%= render 'layouts/footer' %>
+      </div>
     </body>
   </html>
 <% end %>

@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # Additional resource fields to permit
   # Devise already permits email, password, etc.
-  SANITIZED_PARAMS = [:domain, :first_name, :last_name].freeze
+  SANITIZED_PARAMS = [:domain, :first_name, :last_name, :publication_name, :publication_size].freeze
 
   # GET /resource/sign_up
   def new

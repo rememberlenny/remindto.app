@@ -1,12 +1,11 @@
 class Account < ActiveRecord::Base
+  UID_RANGE = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+  generate_public_uid generator: PublicUid::Generators::RangeString.new(9, UID_RANGE)
+
   has_many :users
 
   after_create :generate_uid
   after_create :send_welcome_emails
-
-  # validates :color, :css_hx_color => true
-
-  # attachment :company_image
 
   def send_welcome_emails
     # UserMailer.delay.welcome_email(self.id)
@@ -40,7 +39,6 @@ class Account < ActiveRecord::Base
       u.save
     end
   end
-
 
   def self.check_account_status id
     Account.where(domain: id)

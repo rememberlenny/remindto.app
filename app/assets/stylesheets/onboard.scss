@@ -1,8 +1,6 @@
-@tailwind base;
-
-@tailwind components;
-
-@tailwind utilities;
+// Place all the styles related to the onboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
 
 .signup__teams__option-divider:before {
   background-color: transparent;
@@ -26,7 +24,6 @@
   position: relative;
   z-index: 1;
   font-size: 16px;
-  margin-bottom: 18px;
 }
 
 .signup__teams__option-divider__wrapper {

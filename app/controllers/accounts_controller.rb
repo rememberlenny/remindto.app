@@ -33,7 +33,6 @@ class AccountsController < ApplicationController
     end
   end
 
-
   def signups
     @account = Account.find(params[:id])
     is_users_account

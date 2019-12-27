@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 module ApplicationHelper
   include CommonHelper
 
@@ -61,5 +63,29 @@ module ApplicationHelper
     rurl = url.reverse.slice(0, max_length/2).reverse
     url = url.slice(0, max_length/2)
     return url + delimiter + rurl
+  end
+
+  def publication_size_list_for_select
+    return [
+      ['0 to 1000 readers a month', 'monthly_1000'],
+      ['1000 to 5000 readers a month', 'monthly_5000'],
+      ['5000 to 10,000 readers a month', 'monthly_10000'],
+      ['10,000 to 25,000 readers a month', 'monthly_25000'],
+      ['25,000 to 100,000 readers a month', 'monthly_100000'],
+      ['More than 100,000 readers a month', 'monthly_more_100000'],
+    ]
+  end
+
+  def gravatar(email)
+    # get the email from URL-parameters or what have you and make lowercase
+    email_address = email.downcase
+    
+    # create the md5 hash
+    hash = Digest::MD5.hexdigest(email_address)
+    
+    # compile URL which can be used in <img src="RIGHT_HERE"...
+    image_src = "https://www.gravatar.com/avatar/#{hash}"
+
+    return image_src
   end
 end

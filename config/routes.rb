@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   resources :users, path: 'u', only: :show do
     resources :authentications, path: 'accounts'
   end
+  
   get '/home'       => 'dashboards#home',   as: 'user_home'
   get '/emails'     => 'dashboards#emails', as: 'user_email_templates'
   get '/install'    => 'dashboards#install',   as: 'install'

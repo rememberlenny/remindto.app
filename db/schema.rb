@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_014327) do
+ActiveRecord::Schema.define(version: 2019_12_26_052811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.string "domain"
-    t.string "logo_url"
     t.integer "owner_id"
     t.integer "webhook_id"
     t.datetime "created_at", precision: 6, null: false
@@ -25,10 +24,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_014327) do
     t.string "company_name"
     t.string "uid"
     t.boolean "has_script_setup"
-    t.boolean "remove_branding_flag", default: false
-    t.string "cta", default: ""
-    t.string "description", default: ""
-    t.string "color", default: ""
+    t.string "publication_size"
   end
 
   create_table "ahoy_events", force: :cascade do |t|

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   # Devise, require authenticate by default
   before_action :authenticate_user!
+  before_action :check_accounts
 
   # CanCan, check authorization unless authorizing with devise
   check_authorization unless: :skip_check_authorization?
@@ -26,8 +27,7 @@ class ApplicationController < ActionController::Base
 
   def check_accounts
     if !@current_user.nil? && !@current_user.account_id.nil?
-        @current_account = Account.find(@current_user.account_id)
-        @current_accounts = Account.where(owner_id: @current_user.account_id)
+        @account = Account.find(@current_user.account_id)
     end
   end
 

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :publication_size, :publication_name
   # include Concerns::UserImagesConcern
 
   devise :database_authenticatable, :registerable,
@@ -13,6 +14,19 @@ class User < ActiveRecord::Base
     def grouped_with_oauth
       includes(:oauth_cache).group_by {|a| a.provider }
     end
+  end
+
+  after_create :create_account
+
+  def create_account
+    @user = User.last
+    @account = Account.new
+    @account.publication_size = publication_size
+    @account.company_name = publication_name
+    @account.owner_id = @user.id
+    @account.save
+    @user.account_id = @account.id
+    @user.save
   end
 
   def display_name
@@ -57,5 +71,4 @@ class User < ActiveRecord::Base
   def confirmation_required?
     false
   end
-
 end

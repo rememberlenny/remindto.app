@@ -1,58 +1,28 @@
-<% logged_in = user_signed_in? && !@current_user.nil? && @current_user.try(:account_id).present? %>
-<% top_styles = logged_in ? "margin-bottom: 0px" : "" %>
-<% if user_signed_in? %>
-  <nav class="flex items-center justify-between flex-wrap p-6">
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
-      <%= link_to root_path, class: 'text-xl text-indigo-500 font-semibold' do %>
-        <%= t('brand.name') %>
-      <% end %>
-    </div>
-    <div class="justify-end w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-      <div>
-        <div class="text-sm text-right lg:flex-grow pr-4">
-          <% if user_signed_in? %>
-          <% else %>
-            <%= link_to I18n.t('auth.login.link'), new_user_session_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
+<div>
+  <div class="bg-teal-700">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center md:justify-between py-4">
+        <div class="w-1/4 md:hidden">
+          <svg class="fill-current text-white h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M16.4 9H3.6c-.552 0-.6.447-.6 1 0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1 0-.553-.048-1-.6-1zm0 4H3.6c-.552 0-.6.447-.6 1 0 .553.048 1 .6 1h12.8c.552 0 .6-.447.6-1 0-.553-.048-1-.6-1zM3.6 7h12.8c.552 0 .6-.447.6-1 0-.553-.048-1-.6-1H3.6c-.552 0-.6.447-.6 1 0 .553.048 1 .6 1z"/></svg>
+        </div>
+        <div class="w-1/2 md:w-auto text-center text-white text-2xl font-medium">
+          <%= link_to root_path, class: 'text-xl text-white font-semibold' do %>
+            <%= t('brand.name') %>
           <% end %>
         </div>
-        <div class="flex">
-          <div class="text-right w-full block flex-grow lg:flex lg:items-center lg:w-auto pr-4">
-            <% if user_signed_in? %>
-              <%= link_to I18n.t('nav.preauth.help'), help_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
-              <%= link_to I18n.t('auth.logout.link'), destroy_user_session_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400", rel: :nofollow, method: :delete } %>
-              <%= link_to I18n.t('account.edit.link'), edit_user_registration_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
-            <% else %>
-              <%= link_to I18n.t('nav.preauth.pricing'), pricing_path, { class: "block mt-4 lg:inline-block lg:mt-0 text-black hover:text-grey-400" } %>
-            <% end %>
+        <div class="w-1/4 md:w-auto md:flex text-right">
+          <div>
+            <img class="inline-block h-8 w-8 rounded-full" src="<%= gravatar(@current_user.email) %>" alt="">
           </div>
-          <% if !user_signed_in? %>
-          <form class="m-2 flex">
-            <input autocomplete="email" type="email" class="rounded-l-lg p-2 border-t placeholder-gray-800 mr-0 border-b border-l text-black border-black bg-white" placeholder="your@mail.com"/>
-            <button class="px-2 pl-6 pr-6 border-l rounded-r-lg bg-black text-white font-bold pt-2 pb-2 border-black border-t border-b border-r">Get started</button>
-          </form>
-          <% end %>
+          <div class="hidden md:block md:flex md:items-center ml-2">
+            <span class="text-white text-sm mr-1"><%= @account.company_name %></span>
+            <div>
+              <svg class="fill-current text-white h-4 w-4 block opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0 .436.445.408 1.197 0 1.615-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615z"/></svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
-<% else %>
-  <nav class="flex items-center justify-between flex-wrap p-6">
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
-      
-    </div>
-    <div class="block">
-      
-    </div>
-    <div class="justify-end w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-      <div>
-        <div class="text-sm text-right lg:flex-grow pr-4">
-        </div>
-        <div class="flex">
-          <div class="text-right w-full block flex-grow lg:flex lg:items-center lg:w-auto pr-4">
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </nav>
-<% end %>
+  </div>
+  <%= render 'dash_sidenav' %>
+</div>
