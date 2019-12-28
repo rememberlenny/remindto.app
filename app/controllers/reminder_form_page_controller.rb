@@ -6,7 +6,7 @@ class ReminderFormPageController < ApplicationController
   def show
     response.headers["X-FRAME-OPTIONS"] = "ALLOWALL"
     @id = params[:id]
-    @account = Account.where(uid: @id).first
+    @account = Account.find_by_uid(@id)
     if @account.nil?
       redirect_to root_path, alert: "The account you are looking for does not exist. Please check the reminder URL."
     end

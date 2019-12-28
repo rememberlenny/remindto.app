@@ -96,10 +96,10 @@ class LatersController < ApplicationController
     url = params[:url]
     renew = params[:renew]
     delay = params[:delay]
+    
+    aa = Account.find_by_uid(account_uid)
 
-    account_uid = params[:account]
-    aa = Account.where(uid: account_uid)
-    if aa.count > 0
+    if !aa.nil?
       account_id = aa.first.id
       email = params[:email]
       url = params[:url]
