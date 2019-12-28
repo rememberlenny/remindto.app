@@ -1,88 +1,38 @@
-<div class="flex mb-4 -mx-2 ">
-  <div class="w-1/4 bg-gray-400 px-2">
-    <%= render 'dash_sidenav' %>
-  </div>
-  <div class="w-3/4 bg-white px-2">
-    <div class="flex mb-4">
-      <div class="w-2/4">
-        <h2 class="font-bold text-xl mt-4 mb-2">
-          Account ID
-        </h2>
-        <div>
-          <%= @account.uid %>
-        </div>
-      </div>
-      <div class="w-2/4">
-        <h2 class="font-bold text-xl mt-4 mb-2">
-          Status
-        </h2>
-      </div>
+<div class="flex mb-4 px-4">
+  <div class="w-2/4">
+    <h2 class="font-bold text-xl mt-4 mb-2">
+      Account ID
+    </h2>
+    <div>
+      <%= @account.uid %>
     </div>
-    <div class="mb-3">
-      <div class="w-full lg:max-w-full lg:flex  <%= is_domain_blank_class %> mb-3">
-        <div class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
-          <h2 class="font-bold text-xl mt-4 mb-2">
-            Website tracking
-          </h2>
-          <h2 class="font-bold text-l mt-4 mb-2">
-            Global site tag
-          </h2>
-          <p>
-            This is the Global Site Tag (gtag.js) tracking code for this property. Copy and paste this code as the first item into the <HEAD> of every webpage you want to track. If you already have a Global Site Tag on your page, simply add the config line from the snippet below to your existing Global Site Tag.
-          </p>
-          <div class="mt-4 mb-8">
-            <%= render 'script_tag' %>
-            <p class="text-sm text-gray-600 flex items-center">
-              Step 1
-            </p>
-            <div class="text-gray-900 font-bold text-xl mb-2">
-              Set up your account domain on the <%= link_to 'Settings', edit_user_registration_path %> page.
-            </div>
-            <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-              quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-          </div>
-        </div>
-      </div>
-      <div class="w-full lg:max-w-full lg:flex <%= is_user_script_up_class %> mb-3">
-        <div
-          class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-          <div class="mb-8">
-            <p class="text-sm text-gray-600 flex items-center">
-              Step 2
-            </p>
-            <div class="text-gray-900 font-bold text-xl mb-2">
-              Put the following script tag in the footer of your website.
-            </div>
-            <pre style="overflow-x: scroll; max-width: 100%;"><code>&lt;script type="text/javascript" src="<%= Rails.application.config.settings['env']['BASE_DOMAIN'] %>/widget/<%= @account.uid %>"&gt;&lt;/script&gt;</code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="w-full lg:max-w-full lg:flex  <%= is_domain_blank_class %> mb-3">
-        <div
-          class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-          <div class="mb-8">
-            <p class="text-sm text-gray-600 flex items-center">
-              Step 3
-            </p>
-            <div class="text-gray-900 font-bold text-xl mb-2">
-              Put the following html in the place where you want to see the Readturn Send button.
-            </div>
-            <pre><code>&lt;a href="#" class="later-button-el"&gt;&lt;a&gt;</code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="w-full lg:max-w-full lg:flex  <%= is_domain_blank_class %>">
-        <div
-          class="w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-          <div class="mb-8">
-            <p class="text-sm text-gray-600 flex items-center">
-              Step 4
-            </p>
-            <div class="text-gray-900 font-bold text-xl mb-2">
-              Go to the <%= link_to 'dashboard', user_home_path %>.
-            </div>
-          </div>
-        </div>
+  </div>
+  <div class="w-2/4">
+    <h2 class="font-bold text-xl mt-4 mb-2">
+      Status
+    </h2>
+    <div class="text-sm">
+      <div>Receiving traffic in past 48 hours.</div>
+      <div>0 active users right now. See details in real-time traffic reports.</div>
+      <div>Send test trafficTest traffic sent.</div>
+    </div>
+  </div>
+</div>
+<div class="mb-3 px-4">
+  <div class="w-full lg:max-w-full lg:flex <%= is_domain_blank_class %> mb-3">
+    <div class="w-full border-b border-gray-400 lg:border-t lg:border-gray-400  flex flex-col justify-between leading-normal">
+      <h2 class="font-bold text-xl mt-4 mb-2">
+        Website tracking
+      </h2>
+      <h2 class="font-bold text-l mt-4 mb-2">
+        Global site tag
+      </h2>
+      <p>
+        This is the Readturn Site Tag (readturn.js) tracking code for this property. Copy and paste this code as the first item into the <HEAD> of every webpage you want to track. If you already have a Global Site Tag on your page, simply add the config line from the snippet below to your existing Global Site Tag.
+      </p>
+      <div class="mt-4 mb-8">
+        <%= render 'script_tag' %>
+        
       </div>
     </div>
   </div>

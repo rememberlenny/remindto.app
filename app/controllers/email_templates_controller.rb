@@ -1,4 +1,6 @@
 class EmailTemplatesController < ApplicationController
+  load_and_authorize_resource :user
+  before_action :check_accounts
   before_action :set_email_template, only: [:show, :edit, :update, :destroy]
 
   # GET /email_templates

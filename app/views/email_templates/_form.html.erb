@@ -1,0 +1,16 @@
+<%= form_with model: @email_template do |form| %>
+  <div class="field">
+    <div>
+      <div>
+        <%= form.label :title %>
+      </div>
+      <div class="bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4">
+        <%= form.text_field :title %>
+      </div>
+    </div>
+    <div class="bg-white border-t border-b sm:rounded sm:border shadow pt-2 px-4 pb-4 mb-8">
+      <%= form.rich_text_area :body %>
+    </div>
+  </div>
+  <%= submit_tag 'Save Form', class: 'inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded' %>
+<% end %>

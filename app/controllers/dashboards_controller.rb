@@ -4,9 +4,6 @@ class DashboardsController < ApplicationController
   load_and_authorize_resource :user
   before_action :check_accounts
 
-  def emails
-  end
-
   def home
   end
 

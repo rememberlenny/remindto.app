@@ -57,7 +57,6 @@ Rails.application.routes.draw do
   end
   
   get '/home'       => 'dashboards#home',   as: 'user_home'
-  get '/emails'     => 'dashboards#emails', as: 'user_email_templates'
   get '/install'    => 'dashboards#install',   as: 'install'
   get '/feed'       => 'laters#index',      as: 'later_feed'
   get '/feed/old'   => 'laters#old_index',  as: 'later_old_feed'

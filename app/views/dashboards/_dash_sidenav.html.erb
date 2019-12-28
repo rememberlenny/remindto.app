@@ -1,24 +1,32 @@
-<div class="hidden bg-teal-700 md:block md:border-b">
-  <div class="container mx-auto px-4">
-    <div class="md:flex">
-      <div class="flex -mb-px mr-8">
-        <%= link_to user_home_path, class: "no-underline text-white md:text-blue-dark flex items-center py-4 border-b border-blue-dark" do %>
-          <svg class="h-6 w-6 fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3.889 3h6.222a.9.9 0 0 1 .889.91v8.18a.9.9 0 0 1-.889.91H3.89A.9.9 0 0 1 3 12.09V3.91A.9.9 0 0 1 3.889 3zM3.889 15h6.222c.491 0 .889.384.889.857v4.286c0 .473-.398.857-.889.857H3.89C3.398 21 3 20.616 3 20.143v-4.286c0-.473.398-.857.889-.857zM13.889 11h6.222a.9.9 0 0 1 .889.91v8.18a.9.9 0 0 1-.889.91H13.89a.9.9 0 0 1-.889-.91v-8.18a.9.9 0 0 1 .889-.91zM13.889 3h6.222c.491 0 .889.384.889.857v4.286c0 .473-.398.857-.889.857H13.89C13.398 9 13 8.616 13 8.143V3.857c0-.473.398-.857.889-.857z"/></svg>
-          Dashboard
+<div class="flex-grow mx-auto flex w-full">
+  <div class="flex">
+    <div class="bg-indigo-600 text-purple-lighter flex-none w-56 pb-6 hidden md:block">
+      <div class="mb-8">
+        <div class="px-2 mt-4 mb-2 text-white flex justify-between items-center">
+          <div class="opacity-75">Pages</div>
+        </div>
+        <%= link_to user_home_path, class: 'flex items-center py-3 hover:bg-indigo-800 ' + is_active_path(user_home_path, 'bg-indigo-500') do %>
+          <svg class="h-6 w-6 fill-current text-white ml-2 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3.889 3h6.222a.9.9 0 0 1 .889.91v8.18a.9.9 0 0 1-.889.91H3.89A.9.9 0 0 1 3 12.09V3.91A.9.9 0 0 1 3.889 3zM3.889 15h6.222c.491 0 .889.384.889.857v4.286c0 .473-.398.857-.889.857H3.89C3.398 21 3 20.616 3 20.143v-4.286c0-.473.398-.857.889-.857zM13.889 11h6.222a.9.9 0 0 1 .889.91v8.18a.9.9 0 0 1-.889.91H13.89a.9.9 0 0 1-.889-.91v-8.18a.9.9 0 0 1 .889-.91zM13.889 3h6.222c.491 0 .889.384.889.857v4.286c0 .473-.398.857-.889.857H13.89C13.398 9 13 8.616 13 8.143V3.857c0-.473.398-.857.889-.857z"/></svg>
+          <div class="bg-teal-dark py-1 px-1 text-white">Dashboard</div>
+        <% end %>
+        <%= link_to email_templates_path, class: 'flex items-center py-3 hover:bg-indigo-800 ' + is_active_path(email_templates_path, 'bg-indigo-500') do %>
+          <svg class="h-6 w-6 fill-current text-white ml-2 mr-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 846.66 1058.325" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><g><path class="fil0" d="M816.3 189.22l0 410.86 -407.46 0c6.05,-19.66 9.3,-40.54 9.3,-62.19 0,-116.74 -94.66,-211.39 -211.4,-211.39l-0.82 0.01 0 -137.3 305.19 233.85 305.19 -233.84zm-609.56 172.29c97.42,0 176.39,78.97 176.39,176.38 0,97.42 -78.97,176.39 -176.39,176.39 -97.41,0 -176.39,-78.97 -176.39,-176.39 0,-97.41 78.98,-176.38 176.39,-176.38zm8.38 76.18l0 107.57 84.21 65.26 -21.3 27.58 -97.87 -75.84 0 -124.57 34.96 0zm-9.2 -305.31l610.39 0 -305.2 233.85 -305.19 -233.85z"></path></g></svg>
+          <div class="bg-teal-dark py-1 px-1 text-white">Reminds</div>
+        <% end %>
+        <%= link_to email_templates_path, class: 'flex items-center py-3 hover:bg-indigo-800 ' + is_active_path(email_templates_path, 'bg-indigo-500') do %>
+          <svg class="h-6 w-6 fill-current text-white ml-2 mr-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 512 640" enable-background="new 0 0 512 512" xml:space="preserve"><path d="M448,192V96L352,0H64v192L0,320v192h512V320L448,192z M64,263.563V320H35.781L64,263.563z M320,416H192l-64-96H96v-96V32  h242.75L416,109.25V224v96h-32L320,416z M448,320v-56.438L476.219,320H448z M288,96H128V64h160V96z M352,160H128v-32h224V160z   M128,192h256v32H128V192z M128,256h256v32H128V256z"/></svg>
+          <div class="bg-teal-dark py-1 px-1 text-white">Email templates</div>
         <% end %>
       </div>
-      <div class="flex -mb-px mr-8">
-        <%= link_to user_email_templates_path, class: "no-underline text-white opacity-50 md:text-grey-dark md:opacity-100 flex items-center py-4 border-b border-transparent hover:opacity-100 md:hover:border-grey-dark" do %>
-          <svg class="h-6 w-6 fill-current mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 512 640" enable-background="new 0 0 512 512" xml:space="preserve"><path d="M448,192V96L352,0H64v192L0,320v192h512V320L448,192z M64,263.563V320H35.781L64,263.563z M320,416H192l-64-96H96v-96V32  h242.75L416,109.25V224v96h-32L320,416z M448,320v-56.438L476.219,320H448z M288,96H128V64h160V96z M352,160H128v-32h224V160z   M128,192h256v32H128V192z M128,256h256v32H128V256z"/></svg>
-          Email templates
-        <% end %>
-      </div>
-      <div class="flex -mb-px mr-8">
-        <%= link_to install_path, class: "no-underline text-white opacity-50 md:text-grey-dark md:opacity-100 flex items-center py-4 border-b border-transparent hover:opacity-100 md:hover:border-grey-dark" do %>
-          <svg class="h-6 w-6 fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 12h2v2h9s-.149-4.459-.2-5.854C21.75 6.82 21.275 6 19.8 6h-3.208l-1.197-2.256C15.064 3.121 14.951 3 14.216 3H9.783c-.735 0-.847.121-1.179.744-.165.311-.7 1.318-1.196 2.256H4.199c-1.476 0-1.945.82-2 2.146C2.145 9.473 2 14 2 14h9v-2zM9.649 4.916c.23-.432.308-.516.817-.516h3.067c.509 0 .588.084.816.516L14.924 6h-5.85l.575-1.084zM13 17h-2v-2H2.5s.124 1.797.199 3.322c.031.633.218 1.678 1.8 1.678H19.5c1.582 0 1.765-1.047 1.8-1.678.087-1.568.2-3.322.2-3.322H13v2z" fill-rule="nonzero"/></svg>
-          Admin
+      <div>
+        <div class="px-2 mb-2 text-white flex justify-between items-center">
+          <div class="opacity-75">Admin</div>
+        </div>
+        <%= link_to install_path, class: 'flex items-center' do %>
+          <svg class="h-6 w-6 fill-current text-white ml-2 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 12h2v2h9s-.149-4.459-.2-5.854C21.75 6.82 21.275 6 19.8 6h-3.208l-1.197-2.256C15.064 3.121 14.951 3 14.216 3H9.783c-.735 0-.847.121-1.179.744-.165.311-.7 1.318-1.196 2.256H4.199c-1.476 0-1.945.82-2 2.146C2.145 9.473 2 14 2 14h9v-2zM9.649 4.916c.23-.432.308-.516.817-.516h3.067c.509 0 .588.084.816.516L14.924 6h-5.85l.575-1.084zM13 17h-2v-2H2.5s.124 1.797.199 3.322c.031.633.218 1.678 1.8 1.678H19.5c1.582 0 1.765-1.047 1.8-1.678.087-1.568.2-3.322.2-3.322H13v2z" fill-rule="nonzero"/></svg>
+          <div class="bg-teal-dark py-1 px-1 text-white">Install</div>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+  

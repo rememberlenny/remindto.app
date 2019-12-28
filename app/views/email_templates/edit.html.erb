@@ -1,0 +1,15 @@
+<div class="flex-grow container mx-auto sm:px-4 pt-6 pb-8">
+  <div class="text-blue-dark py-4 text-lg">
+    Editing template
+  </div>
+
+  <div class="flex flex-wrap -mx-4 mb-8">
+    <div class="w-full px-4">
+      <%= render 'form' %>
+    </div>
+  </div>
+  
+  <%= link_to 'Show', @email_template, class: 'inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded' %>
+  <%= link_to 'Back', email_templates_path, class: 'inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded' %>
+</div>
+

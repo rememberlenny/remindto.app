@@ -1,6 +1,6 @@
-<textarea class="text-sm w-4/5 border-solid border-2 border-gray-300 py-2 p-4" rows="9" data-onclick="selectOgtJs" wrap="off" readonly="readonly">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://files.readturn.com/remind/js?id=<%= @account.uid %>"></script>
+<textarea class="text-sm w-4/5 border-solid border-2 border-gray-300 py-2 p-3" rows="9" data-onclick="selectOgtJs" wrap="off" readonly="readonly">
+  <!-- Global site tag (readturn.js) - Readturn.com -->
+  <script async src="https://remind.readturn.com/tag/js?id=<%= @account.uid %>"></script>
   <script>
     window.readTurnDataLayer = window.readTurnDataLayer || [];
     function readTurnTag(){ readTurnDataLayer.push(arguments); }

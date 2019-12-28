@@ -88,4 +88,8 @@ module ApplicationHelper
 
     return image_src
   end
+
+  def is_active_path(link_path, class_override)
+    current_page?(link_path) ? class_override ? class_override : "active_path" : ""
+  end
 end

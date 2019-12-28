@@ -1,0 +1,28 @@
+<div class="w-full mb-6 lg:mb-0 lg:w-2/3 px-4 flex flex-col">
+  <div class="flex-grow flex flex-col bg-white border-t border-b sm:rounded sm:border shadow overflow-hidden">
+    <div class="border-b">
+      <div class="flex justify-between px-4 -mb-px">
+        <h3 class="text-blue-dark py-4 font-normal text-lg">Top reminds</h3>
+        <div class="flex">
+          <button type="button" class="appearance-none py-4 text-blue-dark border-b border-blue-dark mr-3">
+            List
+          </button>
+          <button type="button"
+            class="appearance-none py-4 text-grey-dark border-b border-transparent hover:border-grey-dark">
+            Chart
+          </button>
+        </div>
+      </div>
+    </div>
+    <%= render 'dashboards/list_remind/list_item' %>
+    <%= render 'dashboards/list_remind/list_item' %>
+    <%= render 'dashboards/list_remind/list_item' %>
+    <%= render 'dashboards/list_remind/list_item' %>
+    <%= render 'dashboards/list_remind/list_item' %>
+    <div class="px-6 py-4">
+      <div class="text-center text-grey">
+        <a href="#" class="inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded">View all reminds</a>
+      </div>
+    </div>
+  </div>
+</div>

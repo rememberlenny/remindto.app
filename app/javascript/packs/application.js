@@ -8,7 +8,13 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-import 'stylesheets/application.css'
+require("chartkick")
+require("chart.js")
+
+require("trix")
+require("@rails/actiontext")
+
+import 'stylesheets/application.scss'
 import ahoy from "ahoy.js";
 
 window.ahoy = ahoy;
