@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_27_192020) do
+ActiveRecord::Schema.define(version: 2019_12_28_152909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 2019_12_27_192020) do
     t.string "uid"
     t.boolean "has_script_setup"
     t.string "publication_size"
-    t.string "public_uid"
-    t.index ["public_uid"], name: "index_accounts_on_public_uid"
   end
 
   create_table "action_text_rich_texts", force: :cascade do |t|

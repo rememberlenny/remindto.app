@@ -1,5 +1,6 @@
 class LatersController < ApplicationController
   load_and_authorize_resource :user, :except =>  [:new, :test]
+  before_action :check_accounts, :except =>  [:new, :test]
   skip_authorization_check :only => [:new, :test]
   skip_before_action :authenticate_user!, :only => [:new, :test]
   before_action :add_allow_credentials_headers, :only =>  [:new, :test]
@@ -9,11 +10,6 @@ class LatersController < ApplicationController
   end
 
   def index
-    if @current_user.account_id.nil?
-      flash[:notice] = 'Please follow the instructions below to install'
-      redirect_to install_path
-    end
-
     @laters = Later.where(account_id: @current_user.account_id).where('destined_at >= ?', Time.now).order(destined_at: :asc)
   end
 
@@ -93,7 +89,14 @@ class LatersController < ApplicationController
     end
   end
 
+  # later/new { account_id: 123, email: 123, url: 123, renew: 123, delay: 123 }
   def new
+    account_id = params[:account_id]
+    email = params[:email]
+    url = params[:url]
+    renew = params[:renew]
+    delay = params[:delay]
+
     account_uid = params[:account]
     aa = Account.where(uid: account_uid)
     if aa.count > 0

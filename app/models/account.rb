@@ -1,7 +1,4 @@
 class Account < ActiveRecord::Base
-  UID_RANGE = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
-  generate_public_uid generator: PublicUid::Generators::RangeString.new(9, UID_RANGE)
-
   has_many :users
 
   after_create :generate_uid
@@ -21,15 +18,15 @@ class Account < ActiveRecord::Base
   end
 
   def self.check_is_unique_uid uid
-    uu = Account.where(uid: uid)
-    if uu.count == 0
+    uu = Account.find_by_uid(uid)
+    if uu.nil?
       return true
     end
     return false
   end
 
   def generate_uid
-    uid = SecureRandom.hex(4) + '-' + SecureRandom.hex(6) + '-' + SecureRandom.hex(4)
+    uid = SecureRandom.hex(4) + '-' + SecureRandom.hex(1)
     checked = Account.check_is_unique_uid(uid)
     if checked == true
       self.uid = uid

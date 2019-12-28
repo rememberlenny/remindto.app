@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="flex mb-4">
-    <div class="bg-white mb-6 w-full">
+    <div class="bg-white mb-1 w-full">
       <table class="text-left w-full border-collapse">
         <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
         <thead>
@@ -50,5 +50,8 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <div class="mx-4 mb-4">
+    <%= link_to 'New Email template', new_email_template_path, class: "inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded" %>
   </div>
 </div>

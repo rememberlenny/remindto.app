@@ -17,19 +17,11 @@ Rails.application.routes.draw do
 
   # Static pages
   match '/error'      => 'pages#error', via: [:get, :post], as: 'error_page'
-  get '/rss'          => 'pages#medium', as: 'rss'
-  get '/medium'       => 'pages#medium', as: 'medium'
-  get '/hn'           => 'pages#medium', as: 'hn'
   get '/terms'        => 'pages#terms', as: 'terms'
   get '/privacy'      => 'pages#privacy', as: 'privacy'
-  get '/about'        => 'pages#about', as: 'about'
   get '/optout'       => 'pages#optout', as: 'optout'
   get '/contact'      => 'pages#faq', as: 'contact'
-  get '/dnt'          => 'pages#dnt', as: 'dnt'
-  get '/news'         => 'pages#news', as: 'news'
-  get '/pricing'      => 'pages#pricing', as: 'pricing'
   get '/help'         => 'pages#faq', as: 'help'
-  get '/howtouse'     => 'pages#howtouse', as: 'howtouse'
 
   post '/optout'      => 'pages#optout_confirm', as: 'optout_confirm'
 
@@ -61,9 +53,11 @@ Rails.application.routes.draw do
   get '/feed'       => 'laters#index',      as: 'later_feed'
   get '/feed/old'   => 'laters#old_index',  as: 'later_old_feed'
 
+  post 'remind/new' => 'laters#new',     as: 'new_later'
+
   # Later
   get 'later/update'       => 'laters#update',  as: 'update_later'
-  get ':account/later/new' => 'laters#new',     as: 'new_later'
+  # get ':account/later/new' => 'laters#new',     as: 'new_later'
   get ':account/later/:id' => 'laters#show',    as: 'show_later'
   get '/later/success'     => 'pages#success_later_update', as: 'success_later_update'
 
