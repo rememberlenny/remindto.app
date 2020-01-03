@@ -1,7 +1,7 @@
 <div class="flex w-full px-4 pt-4 mb-4"  data-controller="new-later-form">
   <div class="w-full">
     <div class="flex w-full ">
-      <div class="w-1/3">        
+      <div class="w-1/2">        
         <div>
           <%= form_with model: @later do |form| %>
             <div class="field">
@@ -13,7 +13,7 @@
                 <%= form.label :url %><br>
                 <%= form.text_field :url, class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4', data: { action: 'keyup->new-later-form#checkOgGraph' } %>
               </div>
-              <div>
+              <div class="mb-4">
                 <%= form.label :destined_at %><br>
                 <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4' %>
               </div>
@@ -23,18 +23,15 @@
           <% end %>
         </div>
       </div>
-      <div class="w-2/3">
-        <h4>Sample output</h4>
-        <p class="text-sm">Title</p>
-        <div data-target="new-later-form.title"></div>
-        <hr class="mb-4 mt-4">
-        <p class="text-sm">Description</p>
-        <div data-target="new-later-form.description"></div>
-        <hr class="mb-4 mt-4">
-        <div class="flex w-full ">
-          <div class="w-1/3">   
-            <p class="text-sm">Image</p>
-            <img data-target="new-later-form.image">
+      <div class="w-1/2">
+        <h4>Preview</h4>
+        <div class="bg-white rounded-lg border-t border-b border-l border-r border-gray-400 p-4 p-10 flex justify-center">
+          <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <img class="w-full" data-target="new-later-form.image" src="https://fakeimg.pl/400x300/?text=Featured image">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2" data-target="new-later-form.title">Title here</div>
+              <p class="text-gray-700 text-base" data-target="new-later-form.description">Description here</p>
+            </div>
           </div>
         </div>
       </div>
