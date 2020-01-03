@@ -18,7 +18,12 @@
               </div>
               <div class="mb-4 mt-4">
                 <%= form.label 'Scheduled time', class: "block text-gray-700 text-sm font-bold mb-2" %>
-                <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], {}, { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' } %>
+                <div class="relative">
+                  <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], {}, { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' } %>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  </div>
+                </div>
               </div>
             </div>
             <%= submit_tag 'Save Form', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
@@ -30,7 +35,7 @@
         <h4 class="block text-gray-700 text-sm font-bold mb-2">Preview</h4>
         <div class="bg-white rounded-lg border-t border-b border-l border-r border-gray-400 p-4 p-10 flex justify-center">
           <div class="max-w-sm rounded overflow-hidden shadow-lg">
-            <img class="w-full" data-target="new-later-form.image" src="https://fakeimg.pl/400x300/?text=Featured image">
+            <img class="w-full" data-target="new-later-form.image" src="https://fakeimg.pl/400x300/?text=Featured">
             <div class="px-6 py-4">
               <div class="font-bold text-xl mb-2" data-target="new-later-form.title">Title here</div>
               <p class="text-gray-700 text-base" data-target="new-later-form.description">Description here</p>
