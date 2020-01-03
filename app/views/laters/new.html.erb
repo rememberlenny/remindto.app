@@ -17,8 +17,8 @@
                 <%= form.text_field :url, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', data: { action: 'keyup->new-later-form#checkOgGraph' } %>
               </div>
               <div class="mb-4 mt-4">
-                <%= form.label :destined_at, class: "block text-gray-700 text-sm font-bold mb-2" %>
-                <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+                <%= form.label 'Scheduled time', class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], {}, { class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' } %>
               </div>
             </div>
             <%= submit_tag 'Save Form', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
