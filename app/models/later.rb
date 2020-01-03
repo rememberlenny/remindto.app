@@ -1,14 +1,15 @@
 class Later < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :account
   validates :user_id, presence: true
 
   def self.get_ograph_content(later_id)
-    later = Later.find later_id
-    content = OpenGraph.new(later.url)
-    later.image_url = content.images.first
-    later.title = content.title
+    later = Later.find(later_id)
+    
+    open_graph = MetaInspector.new(later.url)
+    later.image_url = open_graph.meta_tags["property"]['og:image'].first
+    later.title = open_graph.meta_tags["property"]['og:title'].first
     later.content_updated = Time.now
-    later.description = content.description
+    later.description = open_graph.meta_tags["property"]['og:description'].first
     later.save
   end
 

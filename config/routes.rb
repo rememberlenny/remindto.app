@@ -1,15 +1,17 @@
+require 'sidekiq/web'
+
 # Route prefixes use a single letter to allow for vanity urls of two or more characters
 Rails.application.routes.draw do
   post '/remind/new' => 'laters#test'
   get 'telemetry/track'
   get '/getting_started' => 'widget_maker#new', as: 'widget_maker'
 
-  # if defined? Sidekiq
-  #   require 'sidetiq/web'
-  #   authenticate :user, lambda {|u| u.is_admin? } do
-  #     mount Sidekiq::Web, at: '/admin/sidekiq/jobs', as: :sidekiq
-  #   end
-  # end
+  if defined? Sidekiq
+    # require 'sidetiq/web'
+    # authenticate :user, lambda {|u| u.is_admin? } do
+    # end
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   # resources :charges
 
@@ -57,6 +59,7 @@ Rails.application.routes.draw do
   post 'reminds' => 'laters#create',     as: 'create_later'
   post 'remind/check_og_graph' => 'laters#check_og_graph', as: 'check_og_graph'
   get 'reminds'       => 'laters#index',      as: 'laters'
+  get 'reminds/old'       => 'laters#old_index',      as: 'old_laters'
 
   # Later
   get 'later/update'       => 'laters#update',  as: 'update_later'

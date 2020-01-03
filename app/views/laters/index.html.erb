@@ -1,4 +1,4 @@
-<div class="flex w-full bg-gray-100 px-4 pt-4 mb-4">
+<div class="flex w-full bg-gray-100 px-4 pt-4 pb-4">
   <div class="w-full">
     <div class="flex w-full ">
       <div class="w-1/2">
@@ -16,57 +16,39 @@
     </div>
   </div>
 </div> 
+
 <div class="flex-grow container mx-auto pb-8 px-4 ">
   <div class="flex mb-4">
     <div class="bg-white mb-1 w-full">
       <table class="text-left w-full border-collapse">
         <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
         <thead>
-          <tr class="flex">
+          <tr class="flex flex-grow">
             <th
-              class="flex-grow py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
-              Image
+              class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
+              Destined time
             </th>
             <th
-              class="flex-grow py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
-              Title
-            </th>
-            <th
-              class="flex-grow py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
-              Description
-            </th>
-            <th
-              class="flex-grow py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
+              class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
               Delay length
             </th>
             <th
-              class="flex-grow py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
-              Destined time
+              class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
+              Title
+            </th>
+            <th
+              class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
+              Description
             </th>
           </tr>
         </thead>
         <tbody>
           <% @laters.each do |later| %>
-            <tr class="flex">
-              <td class="flex-grow py-4 px-6 border-b border-grey-light">
-                <%= image_tag later.image_url %>
-              </td>
-              <td class="flex-grow py-4 px-6 border-b border-grey-light">
-                <% if !later.title.nil? &&!later.title.empty? %>
-                  <%= later.title %>
-                <% else %>
-                  <%= later.url %>
-                <% end %>
-              </td>
-              <td class="flex-grow py-4 px-6 border-b border-grey-light">
-                <%= later.description %>
-              </td>
-              <td class="flex-grow py-4 px-6 border-b border-grey-light">
-                <%= distance_of_time_in_words(Time.now.utc, later.destined_at) %> from now
-              </td>
-              <td class="flex-grow py-4 px-6 border-b border-grey-light">
-                <%= later.destined_at.strftime("%D %I:%M") %>
-              </td>
+            <tr class="flex flex-grow">
+              <td class=" py-4 px-6 border-b border-grey-light"><%= later.destined_at.strftime("%D %I:%M") %></td>
+              <td class=" py-4 px-6 border-b border-grey-light"><%= distance_of_time_in_words(Time.now.utc, later.destined_at) %> from now</td>
+              <td class=" py-4 px-6 border-b border-grey-light"><% if !later.title.nil? &&!later.title.empty? %><%= later.title %><% else %><%= later.url %><% end %></td>
+              <td class=" py-4 px-6 border-b border-grey-light"><%= later.description %></td>
             </tr>
           <% end %>
         </tbody>

@@ -12,7 +12,7 @@ class LatersController < ApplicationController
   end
 
   def index
-    @laters = Later.where(account_id: @current_user.account_id).where('destined_at >= ?', Time.now).order(destined_at: :asc)
+    @laters = Later.where(account_id: @account.id)
   end
 
   def old_index
@@ -30,10 +30,6 @@ class LatersController < ApplicationController
 
   def show
     @later = Later.find params[:id]
-  end
-
-  def create
-
   end
 
   def update
@@ -117,25 +113,38 @@ class LatersController < ApplicationController
   end
 
   def create 
-    later_params = params[:laters]
-    uid = later_params[:uid]
-    aa = Account.find_by_uid(uid)
-    
+    later_params = params[:later]
+    aa = @account
+    puts aa.id
     if !aa.nil?
       account_id = aa.id
       email = later_params[:email]
       url = later_params[:url]
-      delay_param = later_params[:delay]
+      delay_param = later_params[:destined_at]
       
       remind_user_id = RemindUser.create_email_if_needed(email)
+      delay_date = RemindUser.scheduled_delay_time(delay_param)
 
-      RemindSetupWorker.perform_async(account_id, remind_user_id, url, delay_param)
-      render json: {response: 'Success', code: 200, message: 'Data was received.'}
+      json_response = {response: 'Success', code: 200, message: 'Data was received.'}
     else
-      render json: {response: 'Success', code: 206, message: "Account ID #{uid} not found."}
+      json_response = {response: 'Success', code: 206, message: "Account ID #{uid} not found."}
+    end
+
+    @reminder = Later.new(account_id: account_id, user_id: remind_user_id, url: url, destined_at: delay_date)
+    @reminder.save
+    
+    Later.delay.get_ograph_content(@reminder.id)
+    
+    respond_to do |format|
+      if @reminder.save
+        format.html { redirect_to laters_path, notice: 'Email template was successfully created.' }
+        format.json { render json: json_response }
+      else
+        format.html { render :new }
+        format.json { render json: json_response }
+      end
     end
     
-
     # Trigger a REMIND
     # - Create user if needed
     # - Schedule the remind
