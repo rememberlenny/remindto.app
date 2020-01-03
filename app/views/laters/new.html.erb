@@ -1,30 +1,33 @@
-<div class="flex w-full px-4 pt-4 mb-4"  data-controller="new-later-form">
+<div class="flex w-full px-4 pt-4 bg-gray-100 pb-8"  data-controller="new-later-form">
   <div class="w-full">
+    <div class="flex w-full ">
+      <h1 class="mb-6 text-xl">Create new reminder</h1>
+    </div>
     <div class="flex w-full ">
       <div class="w-1/2">        
         <div>
           <%= form_with model: @later do |form| %>
-            <div class="field">
+            <div class="field mr-8">
               <div>
-                <%= form.label :email %><br>
-                <%= form.text_field :email, class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4' %>
+                <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.text_field :email, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
               </div>
-              <div>
-                <%= form.label :url %><br>
-                <%= form.text_field :url, class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4', data: { action: 'keyup->new-later-form#checkOgGraph' } %>
+              <div class=" mt-4">
+                <%= form.label :url, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.text_field :url, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', data: { action: 'keyup->new-later-form#checkOgGraph' } %>
               </div>
-              <div class="mb-4">
-                <%= form.label :destined_at %><br>
-                <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4' %>
+              <div class="mb-4 mt-4">
+                <%= form.label :destined_at, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
               </div>
             </div>
-            <%= submit_tag 'Save Form', class: 'inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded' %>
+            <%= submit_tag 'Save Form', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
             <div id="preview-og"></div>
           <% end %>
         </div>
       </div>
       <div class="w-1/2">
-        <h4>Preview</h4>
+        <h4 class="block text-gray-700 text-sm font-bold mb-2">Preview</h4>
         <div class="bg-white rounded-lg border-t border-b border-l border-r border-gray-400 p-4 p-10 flex justify-center">
           <div class="max-w-sm rounded overflow-hidden shadow-lg">
             <img class="w-full" data-target="new-later-form.image" src="https://fakeimg.pl/400x300/?text=Featured image">
