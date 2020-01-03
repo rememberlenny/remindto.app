@@ -1,0 +1,43 @@
+<div class="flex w-full px-4 pt-4 mb-4"  data-controller="new-later-form">
+  <div class="w-full">
+    <div class="flex w-full ">
+      <div class="w-1/3">        
+        <div>
+          <%= form_with model: @later do |form| %>
+            <div class="field">
+              <div>
+                <%= form.label :email %><br>
+                <%= form.text_field :email, class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4' %>
+              </div>
+              <div>
+                <%= form.label :url %><br>
+                <%= form.text_field :url, class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4', data: { action: 'keyup->new-later-form#checkOgGraph' } %>
+              </div>
+              <div>
+                <%= form.label :destined_at %><br>
+                <%= form.select :destined_at, [["Now", 'time-now'], ["4 hours", 'time-hour-4'], ["Tomorrow", 'time-day-24'], ["Next weekend", 'time-week-end']], class: 'bg-white border-t border-b sm:rounded sm:border shadow px-4 py-2 mb-4' %>
+              </div>
+            </div>
+            <%= submit_tag 'Save Form', class: 'inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded' %>
+            <div id="preview-og"></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="w-2/3">
+        <h4>Sample output</h4>
+        <p class="text-sm">Title</p>
+        <div data-target="new-later-form.title"></div>
+        <hr class="mb-4 mt-4">
+        <p class="text-sm">Description</p>
+        <div data-target="new-later-form.description"></div>
+        <hr class="mb-4 mt-4">
+        <div class="flex w-full ">
+          <div class="w-1/3">   
+            <p class="text-sm">Image</p>
+            <img data-target="new-later-form.image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

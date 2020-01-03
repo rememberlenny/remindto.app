@@ -1,9 +1,11 @@
+require 'uri'
+
 class LatersController < ApplicationController
-  load_and_authorize_resource :user, :except =>  [:new, :test]
-  before_action :check_accounts, :except =>  [:new, :test]
-  skip_authorization_check :only => [:new, :test]
-  skip_before_action :authenticate_user!, :only => [:new, :test]
-  before_action :add_allow_credentials_headers, :only =>  [:new, :test]
+  load_and_authorize_resource :user
+  before_action :check_accounts
+  # skip_authorization_check :only => [:new, :test]
+  # skip_before_action :authenticate_user!, :only => [:new, :test]
+  # before_action :add_allow_credentials_headers, :only =>  [:new, :test]
 
   def test
     render json: {response: 'Success', email: params, message: 'Good job'}
@@ -89,67 +91,55 @@ class LatersController < ApplicationController
     end
   end
 
-  # later/new { account_id: 123, email: 123, url: 123, renew: 123, delay: 123 }
-  def new
-    account_id = params[:account_id]
-    email = params[:email]
-    url = params[:url]
-    renew = params[:renew]
-    delay = params[:delay]
-    
-    aa = Account.find_by_uid(account_uid)
-
-    if !aa.nil?
-      account_id = aa.first.id
-      email = params[:email]
-      url = params[:url]
-      renew = params[:renew]
-      delay_param = params[:delay]
-      if !delay_param.nil?
-        destined = Chronic.parse('in ' + URI::decode(delay_param) )
-      else
-        destined = nil
-      end
-      output = "No good"
-      if !email.nil? && !url.nil?
-
-        uu = User.where(email: email)
-        if uu.count == 0
-          u = User.create(email: email, password: 'password123')
-        else
-          u = uu.first
-        end
-
-        ll = Later.where(url: url, user_id: u.id)
-        if ll.count == 0
-          l = Later.create(url: url, account_id: account_id, user_id: u.id, created_at: Time.now.utc)
-        else
-          ll.where('destined_at >= ?', Date.today).order(:destined_at)
-          l = ll.first
-          l.modified_at = Time.now.utc
-        end
-
-        if !destined.nil?
-          if destined.future?
-            l.destined_at = destined
-          end
-        else
-          l.destined_at = Time.now.utc + 4.hours
-        end
-        if !renew.nil?
-          l.has_sent = false
-        end
-
-        l.save
-        output = {response: 'success', data: l}
-
-        Later.delay.get_ograph_content(l.id)
-      end
-
-      render json: output
+  def check_og_graph
+    puts params
+    url_string = params[:url]
+    if url_string =~ URI::regexp
+      open_graph = MetaInspector.new(url_string)
+      render :json => {
+        response: 'success',
+        code: 200,
+        open_graph: open_graph,
+        param: url_string
+      }
     else
-      render json: {response: 'Error', message: 'The account ID is not recognized.', id: account_uid}
+      render :json => {
+        response: 'failed',
+        code: 400,
+        param: url_string
+      }
     end
+  end
+
+  # later/new { uid: 123, email: 123, url: 123, renew: 123, delay: 123 }
+  def new
+    @later = Later.new
+  end
+
+  def create 
+    later_params = params[:laters]
+    uid = later_params[:uid]
+    aa = Account.find_by_uid(uid)
+    
+    if !aa.nil?
+      account_id = aa.id
+      email = later_params[:email]
+      url = later_params[:url]
+      delay_param = later_params[:delay]
+      
+      remind_user_id = RemindUser.create_email_if_needed(email)
+
+      RemindSetupWorker.perform_async(account_id, remind_user_id, url, delay_param)
+      render json: {response: 'Success', code: 200, message: 'Data was received.'}
+    else
+      render json: {response: 'Success', code: 206, message: "Account ID #{uid} not found."}
+    end
+    
+
+    # Trigger a REMIND
+    # - Create user if needed
+    # - Schedule the remind
+
   end
 
 end

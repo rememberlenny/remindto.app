@@ -53,11 +53,13 @@ Rails.application.routes.draw do
   get '/feed'       => 'laters#index',      as: 'later_feed'
   get '/feed/old'   => 'laters#old_index',  as: 'later_old_feed'
 
-  post 'remind/new' => 'laters#new',     as: 'new_later'
+  get 'remind/new' => 'laters#new',     as: 'new_later'
+  post 'reminds' => 'laters#create',     as: 'create_later'
+  post 'remind/check_og_graph' => 'laters#check_og_graph', as: 'check_og_graph'
+  get 'reminds'       => 'laters#index',      as: 'laters'
 
   # Later
   get 'later/update'       => 'laters#update',  as: 'update_later'
-  # get ':account/later/new' => 'laters#new',     as: 'new_later'
   get ':account/later/:id' => 'laters#show',    as: 'show_later'
   get '/later/success'     => 'pages#success_later_update', as: 'success_later_update'
 
