@@ -11,4 +11,7 @@ module DashboardsHelper
     end
   end
 
+  def remind_count_for_user(remind_user_id)
+    Later.where(account_id: @account.id, user_id: remind_user_id).count
+  end
 end

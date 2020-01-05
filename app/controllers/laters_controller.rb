@@ -144,11 +144,6 @@ class LatersController < ApplicationController
         format.json { render json: json_response }
       end
     end
-    
-    # Trigger a REMIND
-    # - Create user if needed
-    # - Schedule the remind
-
   end
 
 end

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  form_blocks: MyText
+  cta: MyString
+
+two:
+  title: MyString
+  form_blocks: MyText
+  cta: MyString

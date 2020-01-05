@@ -1,0 +1,2 @@
+class RemindForm < ApplicationRecord
+end

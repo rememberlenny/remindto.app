@@ -14,11 +14,13 @@
         </div>
       </div>
     </div>
-    <%= render 'dashboards/list_remind/list_item' %>
-    <%= render 'dashboards/list_remind/list_item' %>
-    <%= render 'dashboards/list_remind/list_item' %>
-    <%= render 'dashboards/list_remind/list_item' %>
-    <%= render 'dashboards/list_remind/list_item' %>
+    <% @grouped_laters.each do |id, laters| %>
+      <%= render 'dashboards/list_remind/list_item', locals: {
+        url: laters.first.url,
+        title: laters.first.title,
+        count: laters.count
+      } %>
+    <% end %>
     <div class="px-6 py-4">
       <div class="text-center text-grey">
         <a href="#" class="inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded">View all reminds</a>

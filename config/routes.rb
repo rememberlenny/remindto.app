@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   end
   
   get '/home'       => 'dashboards#home',   as: 'user_home'
+  get '/subscribers'                  => 'dashboards#subscribers',   as: 'remind_signups'
+  get '/subscribers/:remind_user_id'  => 'dashboards#show',   as: 'remind_user'
   get '/install'    => 'dashboards#install',   as: 'install'
   get '/feed'       => 'laters#index',      as: 'later_feed'
   get '/feed/old'   => 'laters#old_index',  as: 'later_old_feed'

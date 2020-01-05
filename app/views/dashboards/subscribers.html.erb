@@ -1,0 +1,156 @@
+<!--Regular Datatables CSS-->
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+<!--Responsive Extension Datatables CSS-->
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+
+<style>
+		
+  /*Overrides for Tailwind CSS */
+  
+  /*Form fields*/
+  .dataTables_wrapper select,
+  .dataTables_wrapper .dataTables_filter input {
+    color: #4a5568; 			/*text-gray-700*/
+    padding-left: 1rem; 		/*pl-4*/
+    padding-right: 1rem; 		/*pl-4*/
+    padding-top: .5rem; 		/*pl-2*/
+    padding-bottom: .5rem; 		/*pl-2*/
+    line-height: 1.25; 			/*leading-tight*/
+    border-width: 2px; 			/*border-2*/
+    border-radius: .25rem; 		
+    border-color: #edf2f7; 		/*border-gray-200*/
+    background-color: #edf2f7; 	/*bg-gray-200*/
+  }
+
+  /*Row Hover*/
+  table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: #ebf4ff;	/*bg-indigo-100*/
+  }
+  
+  /*Pagination Buttons*/
+  .dataTables_wrapper .dataTables_paginate .paginate_button		{
+    font-weight: 700;				/*font-bold*/
+    border-radius: .25rem;			/*rounded*/
+    border: 1px solid transparent;	/*border border-transparent*/
+  }
+  
+  /*Pagination Buttons - Current selected */
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current	{
+    color: #fff !important;				/*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
+    font-weight: 700;					/*font-bold*/
+    border-radius: .25rem;				/*rounded*/
+    background: #667eea !important;		/*bg-indigo-500*/
+    border: 1px solid transparent;		/*border border-transparent*/
+  }
+
+  /*Pagination Buttons - Hover */
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
+    color: #fff !important;				/*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
+    font-weight: 700;					/*font-bold*/
+    border-radius: .25rem;				/*rounded*/
+    background: #667eea !important;		/*bg-indigo-500*/
+    border: 1px solid transparent;		/*border border-transparent*/
+  }
+  
+  /*Add padding to bottom border */
+  table.dataTable.no-footer {
+    border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+  }
+  
+  /*Change colour of responsive icon*/
+  table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+    background-color: #667eea !important; /*bg-indigo-500*/
+  }
+  
+</style>
+
+<div class="max-w-6xl self-center content-center">
+  <div class="max-w-4xl self-center mx-auto">
+    <div class="w-full">
+      <div class="flex w-full ">
+        <div class="w-1/2">
+          <h1 class="text-2xl font-bold">Remind subscriber (<%= @remind_users.count %>)</h1>
+        </div>
+      </div>
+      
+      <div class="flex mb-8">
+        <p>
+          
+        </p>
+      </div>
+    </div>
+  </div> 
+  <div class="flex w-full mb-4">
+    <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+			 
+				
+      <table id="data-table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <thead>
+          <tr>
+            <th></th>
+            <th data-priority="1">Email</th>
+            <th data-priority="2">Created</th>
+            <th data-priority="3">Updated</th>
+            <th data-priority="4">Remind count</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @remind_users.each do |user| %>
+            <tr>
+              <td class="justify-center flex"><%= image_tag gravatar(user.email), class: 'rounded-full', style: "max-width: 26px;" %></td class="text-center">
+              <td><%= user.email %></td>
+              <td class="text-center"><%= distance_of_time_in_words(Time.now.utc, user.created_at) %></td>
+              <td class="text-center"><%= distance_of_time_in_words(Time.now.utc, user.updated_at) %></td>
+              <td class="text-center"><%= remind_count_for_user(user.id) %></td>
+              <td class="text-center">
+                <%= link_to remind_user_path(user.id) do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        
+      </table>
+      
+      
+    </div>
+  </div> 
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  
+<!--Datatables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script>
+  
+  var dataTable = $('#data-table').DataTable( {
+    stateSave: true,
+    responsive: true,
+    "columnDefs": [ {
+      "targets": 0,
+      "orderable": false
+    }, {
+      "targets": 5,
+      "orderable": false
+    } ],
+    "order": [[ 3, "desc" ]]
+  } )
+  .columns.adjust()
+  .responsive.recalc();
+
+  document.addEventListener("turbolinks:before-cache", function() {
+    if (dataTable !== null) {
+     dataTable.destroy();
+     dataTable = null;
+    }
+  });
+
+</script>

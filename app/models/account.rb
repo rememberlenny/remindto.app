@@ -3,6 +3,7 @@ class Account < ActiveRecord::Base
 
   after_create :generate_uid
   after_create :send_welcome_emails
+  after_create :make_default_forms
 
   def self.find_param(param)
     find_by! public_uid: param.split('-').first
@@ -10,6 +11,10 @@ class Account < ActiveRecord::Base
   
   def to_param
     "#{public_uid}-#{tile.gsub(/\s/,'-')}"
+  end
+
+  def make_default_forms
+    RemindForms.create(title: 'Need to stop reading?', cta: 'Send email', form_blocks: '', account_id: self.id)
   end
 
   def send_welcome_emails

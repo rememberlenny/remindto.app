@@ -5,12 +5,12 @@
         <button type="button"
           class=" hover:bg-gray-200 text-left appearance-none py-4 text-blue-dark border-b border-blue-dark px-8">
           <div class="mb-1 font-bold">Users</div>
-          <div class="text-3xl">103</div>
+          <div class="text-3xl"><%= @user_ids.count %></div>
         </button>
         <button type="button"
           class="hover:bg-gray-200 text-left appearance-none py-4 text-grey-dark border-b border-transparent hover:border-grey-dark px-8">
-          <div class="mb-1">Sessions</div>
-          <div class="text-3xl font-hairline">42</div>
+          <div class="mb-1">Reminders</div>
+          <div class="text-3xl font-hairline"><%= @session_ids %></div>
         </button>
         <button type="button"
           class="hover:bg-gray-200 text-left appearance-none py-4 text-grey-dark border-b border-transparent hover:border-grey-dark px-8">

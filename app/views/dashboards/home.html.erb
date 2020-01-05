@@ -1,54 +1,33 @@
-<div class="flex w-full bg-gray-100 px-4 pt-4 mb-4">
-  <div class="w-full">
-    <div class="flex w-full ">
-      <div class="w-1/2">
-        <h1 class="text-2xl">Dashboard</h1>
-      </div>
-    </div>
-    
-    <div class="flex mb-4">
-      <p>
-        Understand your user's read behavior.
-      </p>
-    </div>
-  </div>
-</div> 
-<div class="flex-grow container mx-auto pb-8 px-4 ">
-  <%= render 'dashboards/account_summary/box' %>
-
-  <div class="flex flex-wrap -mx-4">
-    
-    <%= render 'dashboards/list_remind/list' %>
-
-    <div class="w-full lg:w-1/3 px-4">
-      <div class="bg-white border-t border-b sm:rounded sm:border shadow">
-        <div class="border-b">
-          <div class="flex justify-between px-6 -mb-px">
-            <h3 class="text-blue-dark py-4 font-normal text-lg">Recent Activity</h3>
-          </div>
-        </div>
-        <div>
-          <div class="text-center px-6 py-4">
-            <div class="py-8">
-              <div class="mb-4">
-                <svg class="inline-block fill-current text-grey h-16 w-16" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20">
-                  <path
-                    d="M11.933 13.069s7.059-5.094 6.276-10.924a.465.465 0 0 0-.112-.268.436.436 0 0 0-.263-.115C12.137.961 7.16 8.184 7.16 8.184c-4.318-.517-4.004.344-5.974 5.076-.377.902.234 1.213.904.959l2.148-.811 2.59 2.648-.793 2.199c-.248.686.055 1.311.938.926 4.624-2.016 5.466-1.694 4.96-6.112zm1.009-5.916a1.594 1.594 0 0 1 0-2.217 1.509 1.509 0 0 1 2.166 0 1.594 1.594 0 0 1 0 2.217 1.509 1.509 0 0 1-2.166 0z" />
-                  </svg>
-              </div>
-              <p class="text-2xl text-grey-darker font-medium mb-4">No buys or sells yet</p>
-              <p class="text-grey max-w-xs mx-auto mb-6">You've successfully linked a payment method and can start
-                buying digital currency.</p>
-              <div>
-                <button type="button"
-                  class="inline-block leading-tight bg-teal-700 border border-blue-dark hover:bg-blue-dark px-3 py-2 text-white no-underline rounded">Buy
-                  now</button>
-              </div>
-            </div>
-          </div>
+<div class="md:w-2/3 lg:w-1/2 xl:1/3 max-w-xl self-center">
+  <div class="flex w-full pt-4 mb-4">
+    <div class="w-full">
+      <div class="flex w-full ">
+        <div class="w-1/2">
+          <h1 class="text-4xl font-bold">👋  Welcome</h1>
         </div>
       </div>
+      
+      <div class="flex mb-4">
+        <p>
+          What do you want to do?
+        </p>
+      </div>
     </div>
-  </div>
+  </div> 
+  <div class="flex w-full mb-4">
+    <%= link_to remind_signups_path, class: "w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded hover:shadow" do %>
+      <div class="flex items-center py-5">
+        <svg class="fill-current text-gray-400 ml-4 mr-2" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M19 7h-8v6h8V7zm2-4H3c-1.1 0-2 .9-2 2v14c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98V5c0-1.1-.9-2-2-2zm0 16.01H3V4.98h18v14.03z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+        <h1 class="ml-2 text-2xl">Create a reminder form</h1>
+      </div> 
+    <% end %>
+  </div> 
+  <div class="flex w-full mb-4">
+    <%= link_to remind_signups_path, class: "w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded hover:shadow" do %>
+      <div class="flex items-center py-5">
+        <svg class="fill-current text-gray-400 ml-4 mr-2" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M3 5v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.11 0-2 .9-2 2zm12 4c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm-9 8c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1H6v-1z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+        <h1 class="ml-2 text-2xl">View subscribers</h1>
+      </div> 
+    <% end %>
+  </div> 
 </div>
