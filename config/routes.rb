@@ -51,6 +51,8 @@ Rails.application.routes.draw do
   end
   
   get '/home'       => 'dashboards#home',   as: 'user_home'
+  get '/forms/:uuid'      => 'dashboards#remind_form',   as: 'remind_form'
+  get '/forms'      => 'dashboards#remind_form_maker',   as: 'remind_form_maker'
   get '/subscribers'                  => 'dashboards#subscribers',   as: 'remind_signups'
   get '/subscribers/:remind_user_id'  => 'dashboards#show',   as: 'remind_user'
   get '/install'    => 'dashboards#install',   as: 'install'
