@@ -63,6 +63,7 @@ Rails.application.routes.draw do
   post 'reminds' => 'laters#create',     as: 'create_later'
   post 'remind/check_og_graph' => 'laters#check_og_graph', as: 'check_og_graph'
   get 'reminds'       => 'laters#index',      as: 'laters'
+  get 'js/remind'       => 'assets_js#remind',      as: 'js_remind'
   get 'reminds/old'       => 'laters#old_index',      as: 'old_laters'
 
   # Later

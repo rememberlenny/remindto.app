@@ -6,26 +6,38 @@
       </div>
       
       <div class="flex mb-8">
-        <div class="max-w-md mx-auto w-full rounded overflow-hidden">
+        <div class="max-w-lg mx-auto w-full rounded ">
+          <div class="pt-4">
+            <div class="font-bold text-xl border-b-2 border-gray-600">Call to action</div>
+          </div>
           <div class="px-6 pt-4">
-            <div class="font-bold text-xl">Call to action</div>
+            <div callToActionForm></div>
+            <script async src="http://localhost:5000/js/remind.js?target=callToActionForm&shouldBeInline=true&startOpen=false&wasSent=false"></script>
           </div>
         </div>
       </div>
 
 
       <div class="flex mb-8">
-        <div class="max-w-md mx-auto w-full rounded overflow-hidden">
+        <div class="max-w-lg mx-auto w-full rounded ">
+          <div class="pt-4">
+            <div class="font-bold text-xl border-b-2 border-gray-600">Form</div>
+          </div>
           <div class="px-6 pt-4">
-            <div class="font-bold text-xl">Form</div>
+            <div elForm></div>
+            <script async src="http://localhost:5000/js/remind.js?target=elForm&shouldBeInline=true&startOpen=true&wasSent=false"></script>
           </div>
         </div>
       </div>
 
       <div class="flex mb-8">
-        <div class="max-w-md mx-auto w-full rounded overflow-hidden">
+        <div class="max-w-lg mx-auto w-full rounded ">
+          <div class="pt-4">
+            <div class="font-bold text-xl border-b-2 border-gray-600">Success prompt</div>
+          </div>
           <div class="px-6 pt-4">
-            <div class="font-bold text-xl">Success prompt</div>
+            <div wasSentForm></div>
+            <script async src="http://localhost:5000/js/remind.js?target=wasSentForm&shouldBeInline=true&startOpen=true&wasSent=true"></script>
           </div>
         </div>
       </div>

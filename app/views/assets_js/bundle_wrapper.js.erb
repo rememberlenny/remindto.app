@@ -1,0 +1,10 @@
+<% ac = ActionController::Base.new() %>
+<% bundle_js = ac.render_to_string template: 'assets_js/bundle.js' %>
+<% bundle_js.gsub! 'embed_selector_here', @target_el %>
+window['<%= @target_el + 'OVERRIDE'%>'] = {
+  submitUrl: 'http://localhost:5000',
+  shouldBeInline: <%= @shouldBeInline %>,
+  startOpen: <%= @startOpen %>,
+  wasSent: <%= @wasSent %>
+};
+<%= raw bundle_js %>
