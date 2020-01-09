@@ -12,7 +12,9 @@
               <div class="font-bold text-xl"><%= form.title %></div>
             </div>
             <div class="px-6 py-4">
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Edit</span>
+              <% if form.can_be_changed === true %>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Edit</span>
+              <% end %>
               <%= link_to remind_form_path(form) do %>
                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Preview</span>
               <% end %>

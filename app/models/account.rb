@@ -14,7 +14,7 @@ class Account < ActiveRecord::Base
   end
 
   def make_default_forms
-    RemindForm.create(title: 'Need to stop reading?', cta: 'Send email', form_blocks: '', account_id: self.id)
+    RemindForm.create(can_be_changed: false, title: 'Need to stop reading?', cta: 'Send email', form_blocks: '', account_id: self.id)
   end
 
   def send_welcome_emails
