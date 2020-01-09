@@ -1,5 +1,5 @@
 <div class="md:w-2/3 lg:w-1/2 xl:1/3 max-w-xl self-center">
-  <div class="flex w-full pt-4 mb-4">
+  <div class="flex w-full pt-4 mb-2">
     <div class="w-full">
       <div class="flex w-full ">
         <div class="w-1/2">
@@ -7,21 +7,40 @@
         </div>
       </div>
       
-      <div class="flex mb-4">
+      <div class="flex">
         <p>
           What do you want to do?
         </p>
       </div>
     </div>
   </div> 
-  <div class="flex w-full mb-4">
-    <textarea class="text-sm border-solid border-2 border-gray-600 p-2 w-full font-mono" rows="10" readonly id="remind-form-script"></textarea>
+</div>
+<div class="md:w-2/3 lg:w-1/2 xl:1/3 max-w-xl self-center">
+  <div class="flex w-full pt-4 mb-4">
+    <div class="w-full">
+      <div class="flex w-full ">
+        <div class="w-1/2">
+          <h1 class="text-2xl font-bold">Account ID</h1>
+        </div>
+      </div>
+      
+      <div class="flex mb-4">
+        <p>
+          <%= @account.uid %>
+        </p>
+      </div>
+    </div>
   </div> 
+</div>
+<div class="flex w-full mb-8 max-w-3xl mx-auto">
+  <textarea class="text-sm border-solid border-2 border-gray-600 p-2 w-full font-mono" rows="3" readonly id="remind-form-script"></textarea>
+</div> 
+<div class="md:w-2/3 lg:w-1/2 xl:1/3 max-w-xl self-center">
   <div class="flex w-full mb-4">
     <%= link_to remind_form_maker_path, class: "w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded hover:shadow" do %>
       <div class="flex items-center py-5">
         <svg class="fill-current text-gray-400 ml-4 mr-2" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M19 7h-8v6h8V7zm2-4H3c-1.1 0-2 .9-2 2v14c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98V5c0-1.1-.9-2-2-2zm0 16.01H3V4.98h18v14.03z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-        <h1 class="ml-2 text-2xl">Create a reminder form</h1>
+        <h1 class="ml-2 text-2xl">Create a custom reminder form</h1>
       </div> 
     <% end %>
   </div> 
@@ -45,3 +64,6 @@
     ell();
   });
 </script>
+
+<!-- Remind site tag (remind.js) - Readturn.com -->
+<script async src="http://localhost:5000/js/remind.js?id=cedec959-791ad8bd95a7-f0c5bbbd"></script>

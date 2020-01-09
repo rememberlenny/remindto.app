@@ -7,4 +7,8 @@ window['<%= @target_el + 'OVERRIDE'%>'] = {
   startOpen: <%= @startOpen %>,
   wasSent: <%= @wasSent %>
 };
+var remindTarget = document.createElement("div");
+var remindAtt = document.createAttribute("<%= @target_el %>");  
+remindTarget.setAttributeNode(remindAtt); 
+document.body.appendChild(remindTarget);
 <%= raw bundle_js %>
