@@ -26,7 +26,7 @@
 <div class="flex w-full mb-8 max-w-3xl mx-auto px-4">
   <textarea class="text-sm border-solid border-2 border-gray-600 p-2 w-full font-mono" rows="3" readonly id="remind-form-script"></textarea>
 </div> 
-<div class="md:w-2/3 lg:w-1/2 xl:1/3 max-w-xl self-center">
+<div class="md:w-2/3 lg:w-1/2 xl:1/3 max-w-xl self-center pb-12">
   <div class="flex w-full mb-4">
     <%= link_to remind_form_maker_path, class: "w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded hover:shadow" do %>
       <div class="flex items-center py-5">
@@ -34,12 +34,22 @@
         <h1 class="ml-2 text-2xl">Create a custom reminder form</h1>
       </div> 
     <% end %>
-  </div> 
+  </div>
   <div class="flex w-full mb-4">
     <%= link_to remind_signups_path, class: "w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded hover:shadow" do %>
       <div class="flex items-center py-5">
         <svg class="fill-current text-gray-400 ml-4 mr-2" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M3 5v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.11 0-2 .9-2 2zm12 4c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm-9 8c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1H6v-1z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
         <h1 class="ml-2 text-2xl">View subscribers</h1>
+      </div> 
+    <% end %>
+  </div>
+  <div class="flex w-full mb-4">
+    <%= link_to laters_path, class: "w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded hover:shadow" do %>
+      <div class="flex items-center py-5">
+        <svg style="top: 3px; position: relative;" class="fill-current text-gray-400 ml-4 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39.999" height="39.999" viewBox="0 0 187 187">
+          <image y="1" width="187" height="148" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAZCAYAAABD2GxlAAAD8ElEQVRIib2XaYiVVRjHfzZauWCEOWqClajkwqC4lGi5ZjVmqakJKQ59KEE/GEEIiV+kUAIrVBDDXEYSo6Y0J61wnBbBGHNaHFEMLWlxw7JUnNCSx/s/+txz7n1nivIPl/uc857l/z7726Ku4XuuM3oAPwIXmnPtDcnM/4P7gaXAPuAQ8Exzb2mZzPw3GAb0A/oD44Du0all15tgO2AM8BgwFLg7WZGPvslMEfxbgq2kmQnAIGno1mRVcQwBbgd+LrpCaC7BVtKK/R4FRuuCLNQBJ4BRQJtoXQvgEWBVxv4ryCLYUYfcBzwMdE5W5OMv4CNgC7AdOAJsBG7SKnv+HdBL4xeA14G/k5OKECwFxgL3Aj2BkcDNyY5ruAjUiJTlqt3AT+75GmC6Gz8A/ALsB77W3kxygaCZbbk0dWOyIh92eAPwPrAjw4cWABVuvEqEDCOA43KbsSL5O/BtodwYNDgmuSKHk8Bq4F1gr7TWFOYCi9yaT1ze6wpMAmYAt0XnGOlXgCV+0hL1AWBXkUvt7c4BfzYzqZsVlrmxaftByU8Ch4F5jtw5t7YTsBj4wAdVuHRfclUOpdJGPdAIVAHlisIYFkSfuvFZmdD2jQc2OBd6D5gC9FFCf04aRAF59ZxAsN4dfEqkDicUcuapBn7QJZM1XwJ8Fa0dAByTvNHNDwamAXOAhdLyUtXoKq0ZqCgnNAudFIElMmdHOe5M4HEdWizv1elFB7q5WcB6yRWKaMOzwKvALcBvmmsLnHd7LT3dqRzaJWjQ1PuFZDPDi5IrgYnAHTLTWwm9HHlP7nlHzl54vuQ9Imc4A2yTbCbtIFKGp/Vv7jXZO36Vk4dHJC7KeZ9Qoq1wJDw2AS+7cUuXmONADPsr5VZHNP7YaXeIJ1jj5LsycqK1S+tkxt5KCzZXGyXmEtXnsxr/EZ0TNNhaBKvds9P6b/QEfedqPnJPQi3FAZmwl2quYSrwBnBUVSlEZ9xMnFH+7ePKakBIQ619qfsV+NL5k3UqnyWU8tFOvV9nlcaHoprdKM32UI6MUZPM5Hy+veSdcfJ9x8lTk605WDV4SmY+qsZgrfwybihMg69JLlMAZcHcYqWem+ar427mbeAlyRZV3RTu01Xsy+R3JRmXmNY+BDYrMzTojFL5q1WPFcmunJm3K+UReBT6aDroIm+//KE0Oe4aLskX63XBDpegA8qjINiq3HhIZW2YGozgp7XBpwsRrFQxz4Kp/3NVk1p9pTWFceqCimWHgG16oSso1LA2JDO5rsY08I20tbNQa9QErG80y8xWPrVUFhN7UzX7Kgpp0PzMosu0Yk2omc1+/5RQU7CoD75sZdZePB/AZZtB3VofB4aZAAAAAElFTkSuQmCC"/>
+        </svg>
+        <h1 class="ml-2 text-2xl">View remind history</h1>
       </div> 
     <% end %>
   </div> 

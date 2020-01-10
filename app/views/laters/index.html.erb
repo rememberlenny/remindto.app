@@ -20,10 +20,10 @@
 <div class="flex-grow container mx-auto pb-8 px-4 ">
   <div class="flex mb-4">
     <div class="bg-white mb-1 w-full">
-      <table class="text-left w-full border-collapse">
+      <table class="text-left w-full border-collapse" id="data-table-reminds">
         <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
         <thead>
-          <tr class="flex flex-grow">
+          <tr class="">
             <th
               class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">
               Destined time
@@ -44,7 +44,7 @@
         </thead>
         <tbody>
           <% @laters.each do |later| %>
-            <tr class="flex flex-grow">
+            <tr class="">
               <td class=" py-4 px-6 border-b border-grey-light"><% if later.destined_at %><%= later.destined_at.strftime("%D %I:%M") %><% end %></td>
               <td class=" py-4 px-6 border-b border-grey-light"><% if later.destined_at %><%= distance_of_time_in_words(Time.now.utc, later.destined_at) %> from now<% end %></td>
               <td class=" py-4 px-6 border-b border-grey-light"><% if !later.title.nil? &&!later.title.empty? %><%= later.title %><% else %><%= later.url %><% end %></td>

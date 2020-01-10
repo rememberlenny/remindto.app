@@ -21,7 +21,9 @@
     <% @remind_user_laters.each do |later| %>
       <div class="w-full rounded overflow-hidden shadow-lg px-4 py-4 mb-4 flex">
         <div class="w-1/5">
+          <% if !later.image_url.nil? %>
           <%= image_tag later.image_url, class: "pt-2" %>
+          <% end %>
         </div>
         <div class="w-4/5">
           <div class="px-6 pt-2">
