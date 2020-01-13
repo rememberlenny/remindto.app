@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   get '/forms/:uuid'      => 'dashboards#remind_form',   as: 'remind_form'
   get '/forms'      => 'dashboards#remind_form_maker',   as: 'remind_form_maker'
   get '/subscribers'                  => 'dashboards#subscribers',   as: 'remind_signups'
+  get '/subscribers/new'  => 'dashboards#new_subscriber',   as: 'new_subscriber'
   get '/subscribers/:remind_user_id'  => 'dashboards#show',   as: 'remind_user'
   get '/install'    => 'dashboards#install',   as: 'install'
   get '/feed'       => 'laters#index',      as: 'later_feed'

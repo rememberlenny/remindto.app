@@ -4,6 +4,10 @@ class DashboardsController < ApplicationController
   load_and_authorize_resource :user
   before_action :check_accounts
 
+  def new_subscriber 
+    
+  end
+
   def remind_form_maker
     @remind_forms = RemindForm.where(account_id: @account.id)
   end
