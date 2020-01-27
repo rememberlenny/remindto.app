@@ -8,7 +8,6 @@ class Later < ActiveRecord::Base
     open_graph = MetaInspector.new(later.url)
     later.image_url = open_graph.meta_tags["property"]["og:image"].first
     later.title = open_graph.meta_tags["property"]["og:title"].first
-    later.site_name = open_graph.meta_tags["property"]["og:site_name"].first
     later.content_updated = Time.now
     later.description = open_graph.meta_tags["property"]["og:description"].first
     later.save
