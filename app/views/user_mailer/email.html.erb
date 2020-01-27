@@ -6,9 +6,7 @@
 <% end %>
 <% content_for :lead do %>
   Thanks for using Readturn
-  <%= succeed '.' do %>
-    <%= link_to I18n.t('brand.name'), user_home_url %>
-  <% end %>
+  <%= link_to I18n.t('brand.name'), user_home_url %>
 
 <% end %>
 <% content_for :callout do %>

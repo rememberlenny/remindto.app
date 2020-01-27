@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_202706) do
+ActiveRecord::Schema.define(version: 2020_01_27_062713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(version: 2020_01_09_202706) do
     t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end
+
+  create_table "ahoy_messages", force: :cascade do |t|
+    t.string "user_type"
+    t.bigint "user_id"
+    t.text "to"
+    t.string "mailer"
+    t.text "subject"
+    t.datetime "sent_at"
+    t.index ["user_type", "user_id"], name: "index_ahoy_messages_on_user_type_and_user_id"
   end
 
   create_table "ahoy_visits", force: :cascade do |t|
@@ -138,6 +148,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_202706) do
     t.integer "account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "site_name"
   end
 
   create_table "remind_forms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -181,6 +192,8 @@ ActiveRecord::Schema.define(version: 2020_01_09_202706) do
     t.string "stripe_token_type"
     t.string "subscription_type", default: "basic"
     t.boolean "is_admin"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

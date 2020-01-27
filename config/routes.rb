@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 # Route prefixes use a single letter to allow for vanity urls of two or more characters
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   post '/remind/new' => 'laters#test'
   get 'telemetry/track'
   get '/getting_started' => 'widget_maker#new', as: 'widget_maker'

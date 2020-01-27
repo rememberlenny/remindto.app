@@ -3,6 +3,7 @@ class ReminderFormPageController < ApplicationController
   skip_before_action :authenticate_user!
   # skip_after_action :intercom_rails_auto_include
   before_action :add_allow_credentials_headers
+
   def show
     response.headers["X-FRAME-OPTIONS"] = "ALLOWALL"
     @id = params[:id]
@@ -19,9 +20,9 @@ class ReminderFormPageController < ApplicationController
       urlrr = URI.parse url
       querys = urlrr.query
       if querys && querys.length > 1
-        splitQuery = querys.split('postId=')
+        splitQuery = querys.split("postId=")
         if splitQuery.length > 1
-          @referrer = 'https://medium.com/post/' + splitQuery[1]
+          @referrer = "https://medium.com/post/" + splitQuery[1]
         else
           @referrer = url
         end
@@ -29,8 +30,7 @@ class ReminderFormPageController < ApplicationController
         @referrer = url
       end
     else
-      @referrer = 'https://remindtoapp.com/?notice=NoReferrWasSet'
+      @referrer = "https://readturn.com/?notice=NoReferrWasSet"
     end
   end
-
 end

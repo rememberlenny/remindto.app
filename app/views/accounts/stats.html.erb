@@ -4,9 +4,9 @@
 <% if Rails.env.development? %>
   <% base_domain = 'http://localhost:3000/' %>
 <% else %>
-  <% base_domain = 'https://remindtoapp.com/' %>
+  <% base_domain = 'https://readturn.com/' %>
 <% end %>
-<% url = base_domain + "f/"+@account.uid+"?as_embed=true&referrer=https%253A%252F%252Fremindtoapp.com%252Ff%252F"+@account.uid %>
+<% url = base_domain + "f/"+@account.uid+"?as_embed=true&referrer=https%253A%252F%252Freadturn.com%252Ff%252F"+@account.uid %>
 <div class='large-4 column medium-3' <%= tag_options({style: 'height: 100vh; border-right: 2px solid #efefef; max-width: 400px;'}, false) %>>
   <%= render 'layouts/side_nav' %>
 </div>

@@ -31,7 +31,7 @@ common: &common
 
   mail:
     layout: 'emails/email'
-    from: 'noreply@remindtoapp.com'
+    from: 'noreply@remind.readturn.com'
 
 
 # Default ENV vars.
@@ -43,7 +43,7 @@ default_env: &default_env
 
   # Host used to determine direct requests vs CDN.
   # See RobotsController.
-  CANONICAL_HOST: 'remindtoapp.com'
+  CANONICAL_HOST: 'readturn.com'
 
   # AUTH_FACEBOOK_KEY: '201539556694091'
   # AUTH_FACEBOOK_SECRET: '80ae1dc93961b7f9a79265af0eeca698'
@@ -86,11 +86,11 @@ staging:
   <<: *common
   env:
     <<: *default_env
-    BASE_DOMAIN: 'https://stg.remindtoapp.com'
+    BASE_DOMAIN: 'https://stg.readturn.com'
 
 production:
   <<: *common
   env:
     # Set dummy key so rake assets:precompile succeeds
-    BASE_DOMAIN: 'https://www.remindtoapp.com'
+    BASE_DOMAIN: 'https://www.readturn.com'
     DEVISE_SECRET_KEY: ''

@@ -5,8 +5,7 @@
 
 - content_for :lead do
   Thanks for signing up to
-  = succeed '.' do
-    = link_to I18n.t('brand.name'), @later.url
+  = link_to I18n.t('brand.name'), @later.url
 
 - content_for :callout do
   %p
@@ -18,7 +17,7 @@
 - content_for :snooze_option do
   %hr
   %p.options
-    Snooze this reminder for: <a href="https://remindtoapp.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=1%20hour&renew=true">an hour</a>, <a href="https://remindtoapp.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=8%20hours&renew=true">eight hours</a>, <a href="https://remindtoapp.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=24%20hours&renew=true">a day</a>, <a href="https://remindtoapp.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=72%20hours&renew=true">three days</a>, or <a href="#">choose when</a>. Or, click to #{link_to 'stop all reminders', user_home_url}. For more detailed preferences, see your #{link_to 'account page', edit_user_registration_url}</a>.
+    Snooze this reminder for: <a href="https://readturn.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=1%20hour&renew=true">an hour</a>, <a href="https://readturn.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=8%20hours&renew=true">eight hours</a>, <a href="https://readturn.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=24%20hours&renew=true">a day</a>, <a href="https://readturn.com/later/update?laterid=#{@later.id}&url=#{@later.url}&delay=72%20hours&renew=true">three days</a>, or <a href="#">choose when</a>. Or, click to #{link_to 'stop all reminders', user_home_url}. For more detailed preferences, see your #{link_to 'account page', edit_user_registration_url}</a>.
 
 %h3
   = @later.title

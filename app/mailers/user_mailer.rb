@@ -1,11 +1,13 @@
 class UserMailer < ActionMailer::Base
   default from: Rails.application.config.settings.mail.from
-  layout 'emails/welcome'
+  layout "emails/welcome"
 
   def welcome_email(user)
     return false unless load_user(user).present?
-    track user: @user
-    mail to: @user.email, subject: I18n.t('emails.welcome.subject')
+    puts user
+    puts user.email
+    # track user: @user
+    mail to: @user.email, subject: I18n.t("emails.welcome.subject")
   end
 
   protected

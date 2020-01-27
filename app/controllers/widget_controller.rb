@@ -9,9 +9,9 @@ class WidgetController < ApplicationController
     uu = Account.where(uid: @id)
     if uu.count > 0
       @account = uu.first
-      render file: 'widget/embed.js.erb', content_type: 'text/javascript'
+      render file: "widget/embed.js.erb", content_type: "text/javascript"
     else
-      render json: { response: 'error', message: 'You must register your domain at https://remindtoapp.com/a/signup. To get your account_key, associate a domain name to your account.' }
+      render json: { response: "error", message: "You must register your domain at https://readturn.com/a/signup. To get your account_key, associate a domain name to your account." }
     end
   end
 
@@ -20,9 +20,9 @@ class WidgetController < ApplicationController
     uu = Account.where(uid: @id)
     if uu.count > 0
       @account = uu.first
-      render file: 'widget/embed_page.js.erb', content_type: 'text/javascript'
+      render file: "widget/embed_page.js.erb", content_type: "text/javascript"
     else
-      render json: { response: 'error', message: 'You must register your domain at https://remindtoapp.com/a/signup. To get your account_key, associate a domain name to your account.' }
+      render json: { response: "error", message: "You must register your domain at https://readturn.com/a/signup. To get your account_key, associate a domain name to your account." }
     end
   end
 
@@ -37,7 +37,7 @@ class WidgetController < ApplicationController
   def init_script
     id = params[:id]
     Account.delay.check_has_script_setup id
-    obj = { response: 'success' }
+    obj = { response: "success" }
     render json: obj
     # confirm ping from webpage
     # confirm has_script_installed is working
