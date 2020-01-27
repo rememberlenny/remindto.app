@@ -4,6 +4,7 @@ class AssetsJsController < ApplicationController
   
   def remind
     @account_uid = assets_params[:id]
+
     if @account_uid && assets_params.keys.count == 1
       @target_el = 'ReadturnEmbedTarget'
       @startOpen = false
@@ -15,11 +16,8 @@ class AssetsJsController < ApplicationController
       @shouldBeInline = assets_params[:shouldBeInline] ? assets_params[:shouldBeInline] : false
       @wasSent = assets_params[:wasSent] ? assets_params[:wasSent] : false
     end
-    respond_to do |format|
-      format.js {
-        render :file => "assets_js/bundle_wrapper.js.erb"
-      }
-    end
+
+    render :file => "./assets_js/bundle_wrapper.js.erb"
   end
 
   def assets_params

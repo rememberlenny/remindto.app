@@ -5,7 +5,8 @@ window['<%= @target_el + 'OVERRIDE'%>'] = {
   submitUrl: 'http://localhost:5000',
   shouldBeInline: <%= @shouldBeInline %>,
   startOpen: <%= @startOpen %>,
-  wasSent: <%= @wasSent %>
+  wasSent: <%= @wasSent %>,
+  accountId: <%= @account_uid %>
 };
 var remindTarget = document.createElement("div");
 var remindAtt = document.createAttribute("<%= @target_el %>");  

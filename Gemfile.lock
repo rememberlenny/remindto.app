@@ -294,6 +294,7 @@ GEM
     ruby-oembed (0.12.0)
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
+    ruby_http_client (3.3.0)
     ruby_parser (3.14.0)
       sexp_processor (~> 4.9)
     rubyzip (2.0.0)
@@ -317,6 +318,8 @@ GEM
     selenium-webdriver (3.142.6)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sendgrid-ruby (6.0.4)
+      ruby_http_client (~> 3.3.0)
     settingslogic (2.0.9)
     sexp_processor (4.13.0)
     sidekiq (5.2.7)
@@ -414,6 +417,7 @@ DEPENDENCIES
   sanitize
   sass-rails (~> 5)
   selenium-webdriver
+  sendgrid-ruby
   settingslogic
   sidekiq
   simple_form
