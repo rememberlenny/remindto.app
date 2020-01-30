@@ -12,15 +12,29 @@
         </div>
         <div class="block relative w-1/4 md:w-auto md:flex text-left ">
           <% if user_signed_in? %>
-            <div>
-              <img class="inline-block h-8 w-8 rounded-full" src="<%= gravatar(@current_user.email) %>" alt="">
-            </div>
-            <div class="hidden md:block md:flex md:items-center ml-2">
-              <span class="hover:underline text-gray-800 text-sm mr-1"><%= @account.company_name %></span>
+            <div class="relative" data-controller="dropdown-menu">
+             <div data-action="click->dropdown-menu#toggle click@window->dropdown-menu#hide" role="button" class="inline-block select-none">
               <div>
-                <svg class="fill-current text-gray-800 h-4 w-4 block opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0 .436.445.408 1.197 0 1.615-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615z"/></svg>
+                <img class="inline-block h-8 w-8 rounded-full" src="<%= gravatar(@current_user.email) %>" alt="">
               </div>
-            </div>
+              <div class="hidden md:block md:flex md:items-center ml-2">
+                <span class="hover:underline text-gray-800 text-sm mr-1"><%= @account.company_name %></span>
+                <div>
+                  <svg class="fill-current text-gray-800 h-4 w-4 block opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0 .436.445.408 1.197 0 1.615-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615z"/></svg>
+                </div>
+              </div>
+             </div>
+             <div data-target="dropdown-menu.menu" class="absolute pin-r mt-2 hidden">
+               <div class="bg-white shadow rounded border overflow-hidden">
+                <%= link_to edit_user_registration_path, class: "block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white" do %>
+                Account settings
+                <% end %>
+                <%= link_to user_registration_path, method: :delete, class: "block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white" do %>
+                  Sign out
+                <% end %>
+               </div>
+             </div>
+            </div>  
           <% end %>
         </div>
       </div>

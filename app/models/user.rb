@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
   # include Concerns::UserImagesConcern
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-        #  :trackable, :confirmable, :timeoutable, :lockable
+         :recoverable, :rememberable, :validatable,
+         :confirmable
+  #  :trackable, :confirmable, :timeoutable, :lockable
 
   # has_many :messages, class_name: "Ahoy::Message"
   has_many :accounts
@@ -12,7 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy, validate: false, inverse_of: :user do
     def grouped_with_oauth
-      includes(:oauth_cache).group_by {|a| a.provider }
+      includes(:oauth_cache).group_by { |a| a.provider }
     end
   end
 
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    first_name.presence || email.split('@')[0]
+    first_name.presence || email.split("@")[0]
   end
 
   # Case insensitive email lookup.
@@ -53,7 +54,7 @@ class User < ActiveRecord::Base
     elsif new_record?
       false
     else
-      super || encrypted_password.blank? && authentications.find{|a| a.valid?}.nil?
+      super || encrypted_password.blank? && authentications.find { |a| a.valid? }.nil?
     end
   end
 
