@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   # include Concerns::UserImagesConcern
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :confirmable
+         :recoverable, :rememberable, :validatable
   #  :trackable, :confirmable, :timeoutable, :lockable
 
   # has_many :messages, class_name: "Ahoy::Message"
