@@ -255,7 +255,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (4.0.1)
-    puma (3.12.1)
+    puma (4.3.9)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-cors (1.1.0)
       rack (>= 2.0.0)
@@ -438,7 +439,7 @@ DEPENDENCIES
   postmark-rails
   premailer-rails
   pry (~> 0.12.2)
-  puma (~> 3.11)
+  puma (~> 4.3)
   rack-cors
   rails (~> 6.0.0)
   rails_best_practices
